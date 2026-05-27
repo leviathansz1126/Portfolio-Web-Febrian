@@ -200,7 +200,7 @@ function App() {
 
       <section className="section planet-showcase-section">
         <div className="section-head center">
-          <span>Realistic Planets</span>
+          <span>Planets</span>
           <h2>Explore the planets in one clean section.</h2>
         </div>
 
@@ -211,7 +211,7 @@ function App() {
             </div>
             <div className="planet-showcase-content">
               <h3>Mercury</h3>
-              <p>Small rocky planet closest to the Sun.</p>
+              <p>A small dark-gray planet with a rocky surface covered in visible craters.</p>
             </div>
           </article>
 
@@ -221,7 +221,7 @@ function App() {
             </div>
             <div className="planet-showcase-content">
               <h3>Venus</h3>
-              <p>Hot cloudy planet with realistic golden texture.</p>
+              <p>A golden-brown planet with a thick cloudy surface and a warm glowing look.</p>
             </div>
           </article>
 
@@ -231,7 +231,7 @@ function App() {
             </div>
             <div className="planet-showcase-content">
               <h3>Earth</h3>
-              <p>Blue planet with realistic texture and moon orbit.</p>
+              <p>A blue planet with green-brown land areas and soft white cloud layers.</p>
             </div>
           </article>
 
@@ -241,7 +241,7 @@ function App() {
             </div>
             <div className="planet-showcase-content">
               <h3>Mars</h3>
-              <p>Red planet scene with realistic surface texture.</p>
+              <p>A reddish-brown planet with a dry, dusty, and rocky surface texture.</p>
             </div>
           </article>
 
@@ -251,7 +251,7 @@ function App() {
             </div>
             <div className="planet-showcase-content">
               <h3>Jupiter</h3>
-              <p>Large gas giant with realistic planet bands.</p>
+             <p>A giant planet with swirling brown, cream, and white atmospheric bands.</p>
             </div>
           </article>
 
@@ -261,7 +261,7 @@ function App() {
             </div>
             <div className="planet-showcase-content">
               <h3>Saturn</h3>
-              <p>Ringed planet with realistic texture and premium space detail.</p>
+             <p>A pale yellow planet surrounded by thin rings across its middle area.</p>
             </div>
           </article>
 
@@ -271,7 +271,7 @@ function App() {
             </div>
             <div className="planet-showcase-content">
               <h3>Uranus</h3>
-              <p>Ice giant planet with soft blue-green atmosphere.</p>
+              <p>A smooth blue-green planet with a cold, soft, and gaseous appearance.</p>
             </div>
           </article>
 
@@ -281,7 +281,7 @@ function App() {
             </div>
             <div className="planet-showcase-content">
               <h3>Neptune</h3>
-              <p>Deep blue planet for futuristic galaxy atmosphere.</p>
+              <p>A deep blue planet with a dark mysterious atmosphere and smooth surface glow.</p>
             </div>
           </article>
         </div>
