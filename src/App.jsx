@@ -187,7 +187,7 @@ function HeroSection({ onBlurComplete }) {
           </div>
 
 <h1 className="hero-title-custom">
-  <span>Hi I'm</span>
+  <span>Hi I'm </span>
   <span className="hero-title-main">Febrian</span>
 </h1>
           <BlurText

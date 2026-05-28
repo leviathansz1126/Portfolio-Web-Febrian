@@ -3272,3 +3272,241 @@ body {
     transform: scale(0.96);
   }
 }
+
+/* ======================================================
+   ANDROID RESPONSIVE + LIGHT PERFORMANCE FINAL
+   Semua section tetap ada, tapi layout dan efek lebih aman.
+   ====================================================== */
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden !important;
+}
+
+.app {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden !important;
+}
+
+/* Aurora mobile lebih soft */
+@media (max-width: 768px) {
+  .portfolio-aurora-bg {
+    opacity: 0.72 !important;
+  }
+
+  .portfolio-aurora-bg::after {
+    background:
+      radial-gradient(circle at 20% 0%, rgba(94, 0, 254, 0.28), transparent 36%),
+      radial-gradient(circle at 82% 0%, rgba(0, 255, 171, 0.2), transparent 34%),
+      linear-gradient(180deg, rgba(5, 6, 6, 0.32) 0%, rgba(5, 6, 6, 0.86) 52%, #050606 100%) !important;
+  }
+}
+
+/* HERO MOBILE */
+@media (max-width: 768px) {
+  .navbar {
+    top: 18px !important;
+  }
+
+  .nav-inner {
+    width: calc(100% - 28px) !important;
+  }
+
+  .nav-brand {
+    font-size: 0.95rem !important;
+  }
+
+  .nav-links {
+    gap: 14px !important;
+  }
+
+  .nav-links a {
+    font-size: 0.74rem !important;
+  }
+
+  .hero {
+    min-height: auto !important;
+    padding: 104px 0 72px !important;
+    align-items: flex-start !important;
+  }
+
+  .hero-inner {
+    width: calc(100% - 28px) !important;
+    display: block !important;
+    padding-top: 0 !important;
+  }
+
+  .hero-content {
+    max-width: 100% !important;
+    transform: none !important;
+  }
+
+  .hero-title-custom,
+  .hero-content h1,
+  .split-title {
+    font-size: clamp(3.2rem, 15vw, 5rem) !important;
+    line-height: 0.96 !important;
+    letter-spacing: -0.055em !important;
+  }
+
+  .hero-title-custom span,
+  .hero-content h1 span,
+  .split-title span {
+    padding-bottom: 0.08em !important;
+  }
+
+  .hero-description,
+  .hero-description span {
+    max-width: 100% !important;
+    font-size: 0.95rem !important;
+    line-height: 1.62 !important;
+  }
+
+  .hero-actions {
+    flex-wrap: wrap !important;
+    gap: 12px !important;
+  }
+
+  .btn {
+    min-height: 42px !important;
+    padding: 0 18px !important;
+    font-size: 0.82rem !important;
+  }
+
+  .hero-stats {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    margin-top: 26px !important;
+  }
+
+  .stat-card {
+    min-height: 82px !important;
+    padding: 18px !important;
+  }
+
+  .hero-visual {
+    width: 100% !important;
+    min-width: 0 !important;
+    margin-top: 44px !important;
+    transform: none !important;
+    justify-content: center !important;
+  }
+
+  .hero-visual .pc-card-wrapper {
+    width: min(86vw, 310px) !important;
+    max-width: min(86vw, 310px) !important;
+  }
+
+  .hero-visual .pc-card {
+    height: min(118vw, 440px) !important;
+    max-height: 440px !important;
+  }
+
+  .hero-visual .pc-details h3 {
+    font-size: clamp(1.7rem, 8vw, 2.45rem) !important;
+  }
+
+  .hero-visual .pc-details p {
+    font-size: 0.82rem !important;
+  }
+}
+
+/* ABOUT MOBILE: lanyard masuk kotak sendiri */
+@media (max-width: 768px) {
+  .section {
+    padding: 70px 0 !important;
+  }
+
+  .container {
+    width: calc(100% - 28px) !important;
+  }
+
+  .about-lanyard-panel {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+    padding: 24px !important;
+    border-radius: 24px !important;
+    overflow: hidden !important;
+  }
+
+  .about-lanyard-copy {
+    order: 1 !important;
+    max-width: 100% !important;
+  }
+
+  .about-lanyard-copy h2 {
+    font-size: clamp(2.6rem, 14vw, 4.1rem) !important;
+    line-height: 0.98 !important;
+    letter-spacing: -0.055em !important;
+  }
+
+  .about-blur-text,
+  .about-blur-text span {
+    font-size: 0.94rem !important;
+    line-height: 1.68 !important;
+  }
+
+  .about-stats {
+    gap: 34px !important;
+  }
+
+  .about-lanyard-visual {
+    order: 2 !important;
+    position: relative !important;
+    width: 100% !important;
+    min-height: 430px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    overflow: hidden !important;
+    border-radius: 24px !important;
+    margin-top: 4px !important;
+    background:
+      radial-gradient(circle at 50% 8%, rgba(34, 242, 255, 0.1), transparent 42%),
+      radial-gradient(circle at 90% 80%, rgba(143, 72, 255, 0.18), transparent 48%),
+      rgba(255, 255, 255, 0.025) !important;
+    border: 1px solid rgba(138, 255, 216, 0.15) !important;
+  }
+
+  .about-lanyard-visual::before {
+    display: none !important;
+    content: none !important;
+  }
+
+  .about-lanyard-visual .lanyard-wrapper {
+    position: relative !important;
+    z-index: 2 !important;
+    width: 100% !important;
+    height: 430px !important;
+    min-height: 430px !important;
+    overflow: visible !important;
+    transform: translateY(-34px) scale(0.86) !important;
+    transform-origin: center !important;
+    touch-action: none !important;
+  }
+}
+
+/* Project/tools/contact mobile */
+@media (max-width: 768px) {
+  .section-header h2 {
+    font-size: clamp(2.2rem, 11vw, 3.4rem) !important;
+    line-height: 1 !important;
+  }
+
+  .service-grid,
+  .projects-grid,
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .project-card,
+  .service-card,
+  .chat-panel,
+  .contact-panel {
+    border-radius: 22px !important;
+  }
+}
