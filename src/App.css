@@ -2488,3 +2488,305 @@ footer {
     transform: translate3d(24px, -18px, 0) scale(1.08);
   }
 }
+
+/* =========================================================
+   MOBILE PERFORMANCE FIX + NO WHITE SCREEN
+========================================================= */
+
+html,
+body,
+#root,
+.portfolio {
+  background: #02030a !important;
+  overflow-x: hidden !important;
+}
+
+@media (max-width: 899px) {
+  html,
+  body,
+  #root,
+  .portfolio,
+  main {
+    width: 100% !important;
+    min-height: 100% !important;
+    background:
+      radial-gradient(circle at 18% 12%, rgba(88, 28, 135, 0.34), transparent 32%),
+      radial-gradient(circle at 80% 28%, rgba(14, 116, 144, 0.14), transparent 34%),
+      linear-gradient(135deg, #02030a 0%, #060817 46%, #0b0620 100%) !important;
+  }
+
+  .hero {
+    display: block !important;
+    width: 100% !important;
+    min-height: auto !important;
+    padding: 150px 22px 70px !important;
+    overflow: hidden !important;
+    text-align: left !important;
+  }
+
+  .hero-copy {
+    position: relative !important;
+    z-index: 5 !important;
+    max-width: 100% !important;
+    padding-top: 0 !important;
+  }
+
+  .hero h1 {
+    font-size: clamp(52px, 17vw, 82px) !important;
+    line-height: 0.95 !important;
+    letter-spacing: -3px !important;
+  }
+
+  .hero-role {
+    font-size: 25px !important;
+    line-height: 1.15 !important;
+  }
+
+  .hero-desc {
+    max-width: 100% !important;
+    font-size: 15px !important;
+    line-height: 1.75 !important;
+  }
+
+  .hero-metrics {
+    grid-template-columns: 1fr 1fr 1fr !important;
+    gap: 10px !important;
+  }
+
+  .hero-metrics div {
+    padding: 14px !important;
+  }
+
+  .hero-metrics strong {
+    font-size: 22px !important;
+  }
+
+  .hero-metrics span {
+    font-size: 11px !important;
+  }
+
+  /* matiin WebGL hero di HP */
+  .space-canvas-free {
+    display: none !important;
+  }
+
+  .hero-space-visual {
+    position: absolute !important;
+    inset: 0 !important;
+    height: 100% !important;
+    min-height: 100% !important;
+    pointer-events: none !important;
+    z-index: 1 !important;
+    overflow: hidden !important;
+  }
+
+  /* pengganti 3D ringan */
+  .mobile-space-art {
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    right: -150px;
+    top: 260px;
+    opacity: 0.8;
+    filter: drop-shadow(0 0 28px rgba(103, 232, 249, 0.08));
+  }
+
+  .mobile-orbit {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(103, 232, 249, 0.14);
+    transform: rotate(-18deg);
+  }
+
+  .orbit-one {
+    inset: 90px 40px;
+  }
+
+  .orbit-two {
+    inset: 64px 10px;
+  }
+
+  .orbit-three {
+    inset: 32px -28px;
+  }
+
+  .mobile-sun {
+    position: absolute;
+    width: 92px;
+    height: 92px;
+    top: 160px;
+    left: 165px;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 35% 35%, #fff7ad, #ffb703 32%, #ff6a00 66%, #9a3412 100%);
+    box-shadow:
+      0 0 34px rgba(255, 183, 3, 0.5),
+      0 0 90px rgba(255, 90, 0, 0.22);
+  }
+
+  .mobile-planet {
+    position: absolute;
+    border-radius: 50%;
+  }
+
+  .mobile-planet-one {
+    width: 28px;
+    height: 28px;
+    top: 125px;
+    left: 110px;
+    background: #67e8f9;
+  }
+
+  .mobile-planet-two {
+    width: 40px;
+    height: 40px;
+    top: 220px;
+    left: 265px;
+    background: #8b5cf6;
+  }
+
+  .mobile-planet-three {
+    width: 22px;
+    height: 22px;
+    top: 185px;
+    left: 330px;
+    background: #f97316;
+  }
+
+  /* navbar mobile biar nggak nutup konten parah */
+  .nav {
+    width: calc(100% - 24px) !important;
+    top: 12px !important;
+    left: 12px !important;
+    right: 12px !important;
+    transform: none !important;
+    height: auto !important;
+    min-height: 82px !important;
+    padding: 14px !important;
+    border-radius: 28px !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 14px !important;
+  }
+
+  .nav-profile {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  .nav-profile div {
+    display: block !important;
+  }
+
+  .nav-menu {
+    width: 100% !important;
+    margin-left: 0 !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    flex-wrap: wrap !important;
+  }
+
+  .nav-menu a {
+    font-size: 13px !important;
+    padding: 6px 8px !important;
+  }
+
+  .section,
+  .contact {
+    width: 100% !important;
+    padding-left: 22px !important;
+    padding-right: 22px !important;
+    margin-bottom: 80px !important;
+  }
+
+  .planet-showcase-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .planet-showcase-canvas {
+    height: 240px !important;
+    display: grid !important;
+    place-items: center !important;
+    background:
+      radial-gradient(circle at center, rgba(103, 232, 249, 0.06), transparent 48%),
+      rgba(2, 6, 23, 0.86) !important;
+  }
+}
+
+/* =========================================================
+   MOBILE STATIC PLANETS - NO WEBGL
+========================================================= */
+
+.planet-static {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  box-shadow:
+    inset -28px -24px 38px rgba(0, 0, 0, 0.42),
+    0 0 34px rgba(103, 232, 249, 0.08);
+}
+
+.mercury-static {
+  background:
+    radial-gradient(circle at 35% 30%, #9ca3af, #52525b 52%, #27272a 100%);
+}
+
+.venus-static {
+  background:
+    radial-gradient(circle at 35% 30%, #facc15, #92400e 58%, #451a03 100%);
+}
+
+.earth-static {
+  background:
+    radial-gradient(circle at 35% 30%, #38bdf8, #2563eb 42%, #14532d 62%, #020617 100%);
+}
+
+.mars-static {
+  background:
+    radial-gradient(circle at 35% 30%, #f97316, #b45309 55%, #431407 100%);
+}
+
+.jupiter-static {
+  background:
+    repeating-linear-gradient(
+      0deg,
+      #e7c58e 0 14px,
+      #9a6b3d 14px 26px,
+      #f3e1b4 26px 38px,
+      #6b4423 38px 48px
+    );
+}
+
+.saturn-static {
+  width: 136px;
+  height: 136px;
+  background:
+    radial-gradient(circle at 35% 30%, #f5deb3, #c9a86a 56%, #7c5f35 100%);
+}
+
+.saturn-static::before {
+  content: "";
+  position: absolute;
+  width: 230px;
+  height: 62px;
+  left: 50%;
+  top: 50%;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) rotate(-12deg);
+  border: 12px solid rgba(231, 203, 142, 0.55);
+  border-left-color: rgba(231, 203, 142, 0.18);
+  border-right-color: rgba(231, 203, 142, 0.18);
+  z-index: -1;
+}
+
+.uranus-static {
+  background:
+    radial-gradient(circle at 35% 30%, #bae6fd, #67e8f9 48%, #0f766e 100%);
+}
+
+.neptune-static {
+  background:
+    radial-gradient(circle at 35% 30%, #60a5fa, #1d4ed8 50%, #020617 100%);
+}
+

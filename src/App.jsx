@@ -17,26 +17,47 @@ function GalaxyLoader() {
           <span className="loader-planet planet-c"></span>
         </div>
 
-        <p>INITIALIZING POTOFOLIO</p>
+        <p>INITIALIZING PORTFOLIO</p>
         <h1>HI.. WELCOME</h1>
 
         <div className="loader-bar">
           <span></span>
         </div>
 
-        <small>Loading...</small>
+        <small>Loading galaxy experience...</small>
       </div>
     </div>
   );
 }
 
+function useIsDesktop() {
+  const [isDesktop, setIsDesktop] = useState(() => {
+    if (typeof window === "undefined") return true;
+    return window.innerWidth >= 900;
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth >= 900);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return isDesktop;
+}
+
 function App() {
   const [loading, setLoading] = useState(true);
+  const isDesktop = useIsDesktop();
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2600);
+    }, 1400);
 
     return () => clearTimeout(timer);
   }, []);
@@ -49,22 +70,22 @@ function App() {
     {
       number: "01",
       title: "Web Development",
-      desc: "Membangun website modern, responsif, cepat, dan memiliki visual yang kuat menggunakan React, JavaScript, HTML, dan CSS.",
+      desc: "Building modern, responsive, fast, and visually strong websites using React, JavaScript, HTML, and CSS.",
     },
     {
       number: "02",
       title: "UI/UX Design",
-      desc: "Merancang tampilan digital yang clean, mudah digunakan, dan nyaman dilihat dengan fokus pada pengalaman pengguna.",
+      desc: "Designing clean, easy-to-use, and visually comfortable digital interfaces focused on user experience.",
     },
     {
       number: "03",
       title: "System Analysis",
-      desc: "Menganalisis kebutuhan sistem, membuat alur proses, use case, activity diagram, dan struktur sistem informasi.",
+      desc: "Analyzing system requirements, process flows, use cases, activity diagrams, and information system structures.",
     },
     {
       number: "04",
       title: "Mobile Development",
-      desc: "Mengembangkan aplikasi mobile menggunakan Flutter dan Firebase dengan fitur autentikasi, database, dan realtime update.",
+      desc: "Developing mobile applications using Flutter and Firebase with authentication, database, and realtime features.",
     },
   ];
 
@@ -72,25 +93,25 @@ function App() {
     {
       title: "Galaxy Portfolio",
       type: "Interactive Web",
-      desc: "Website portfolio berbasis React dengan konsep galaxy, realistic planet showcase, animasi tata surya, responsive layout, dan visual premium.",
+      desc: "A React-based portfolio website with a dark galaxy concept, realistic planet showcase, solar system animation, responsive layout, and premium visual style.",
       tech: ["React", "Vite", "Three.js"],
     },
     {
       title: "Banar.id Marketplace",
       type: "Mobile App",
-      desc: "Aplikasi marketplace pertanian untuk menghubungkan petani dan distributor menggunakan Flutter dan Firebase.",
+      desc: "An agriculture marketplace application that connects farmers and distributors using Flutter and Firebase.",
       tech: ["Flutter", "Firebase", "Firestore"],
     },
     {
       title: "Usability Evaluation",
       type: "Research",
-      desc: "Analisis usability sistem informasi menggunakan metode Heuristic Evaluation untuk menilai kualitas pengalaman pengguna.",
+      desc: "A usability analysis project using the Heuristic Evaluation method to assess user experience quality.",
       tech: ["UI/UX", "Research", "Evaluation"],
     },
     {
       title: "Admin Dashboard",
       type: "Dashboard UI",
-      desc: "Desain dashboard admin modern untuk menampilkan data, statistik, laporan, dan manajemen konten secara responsif.",
+      desc: "A modern admin dashboard design for displaying data, statistics, reports, and content management responsively.",
       tech: ["HTML", "CSS", "JavaScript"],
     },
   ];
@@ -110,29 +131,95 @@ function App() {
     "VS Code",
   ];
 
+  const planets = [
+    {
+      name: "Mercury",
+      planet: "mercury",
+      staticClass: "mercury-static",
+      desc: "A small dark-gray planet with a rocky surface covered in visible craters.",
+    },
+    {
+      name: "Venus",
+      planet: "venus",
+      staticClass: "venus-static",
+      desc: "A golden-brown planet with a thick cloudy surface and a warm glowing look.",
+    },
+    {
+      name: "Earth",
+      planet: "earth",
+      staticClass: "earth-static",
+      moon: true,
+      desc: "A blue planet with green-brown land areas and soft white cloud layers.",
+    },
+    {
+      name: "Mars",
+      planet: "mars",
+      staticClass: "mars-static",
+      desc: "A reddish-brown planet with a dry, dusty, and rocky surface texture.",
+    },
+    {
+      name: "Jupiter",
+      planet: "jupiter",
+      staticClass: "jupiter-static",
+      desc: "A giant planet with swirling brown, cream, and white atmospheric bands.",
+    },
+    {
+      name: "Saturn",
+      planet: "saturn",
+      staticClass: "saturn-static",
+      ring: true,
+      desc: "A pale yellow planet surrounded by thin rings across its middle area.",
+    },
+    {
+      name: "Uranus",
+      planet: "uranus",
+      staticClass: "uranus-static",
+      desc: "A smooth blue-green planet with a cold, soft, and gaseous appearance.",
+    },
+    {
+      name: "Neptune",
+      planet: "neptune",
+      staticClass: "neptune-static",
+      desc: "A deep blue planet with a dark mysterious atmosphere and smooth surface glow.",
+    },
+  ];
+
+  const renderPlanetVisual = (item) => {
+    if (isDesktop) {
+      return (
+        <PlanetScene
+          planet={item.planet}
+          ring={Boolean(item.ring)}
+          moon={Boolean(item.moon)}
+        />
+      );
+    }
+
+    return <div className={`planet-static ${item.staticClass}`}></div>;
+  };
+
   return (
     <main className="portfolio">
-<nav className="nav">
-  <div className="nav-profile">
-    <img src="/febrian1.jpeg" alt="Foto Febrian" />
-    <div>
-      <span>Information Systems Student</span>
-      <strong>M Febrian Sidiq Hafadzah</strong>
-    </div>
-  </div>
+      <nav className="nav">
+        <div className="nav-profile">
+          <img src="/febrian1.jpeg" alt="Foto Febrian" />
+          <div>
+            <span>Information Systems Student</span>
+            <strong>M Febrian Sidiq Hafadzah</strong>
+          </div>
+        </div>
 
-  <div className="nav-menu">
-    <a href="#about">About</a>
-    <a href="#expertise">Expertise</a>
-    <a href="#projects">Works</a>
-    <a href="#tech">Tech</a>
-    <a href="#contact">Contact</a>
-  </div>
-</nav>
+        <div className="nav-menu">
+          <a href="#about">About</a>
+          <a href="#expertise">Expertise</a>
+          <a href="#projects">Works</a>
+          <a href="#tech">Tech</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
 
       <section className="hero" id="home">
         <div className="hero-copy">
-
           <h1>
             M Febrian
             <br />
@@ -142,7 +229,9 @@ function App() {
           <p className="hero-role">Web Developer & UI/UX Enthusiast</p>
 
           <p className="hero-desc">
-            I'm an Information Systems student focusing on web development, interface design, and systems analysis. I build modern, interactive, responsive, and user-friendly digital experiences.
+            I'm an Information Systems student focusing on web development,
+            interface design, and systems analysis. I build modern,
+            interactive, responsive, and user-friendly digital experiences.
           </p>
 
           <div className="hero-actions">
@@ -174,9 +263,21 @@ function App() {
           <div className="space-glow one"></div>
           <div className="space-glow two"></div>
 
-          <div className="space-canvas-free">
-            <RealSolarSystemScene />
-          </div>
+          {isDesktop ? (
+            <div className="space-canvas-free">
+              <RealSolarSystemScene />
+            </div>
+          ) : (
+            <div className="mobile-space-art" aria-hidden="true">
+              <span className="mobile-orbit orbit-one"></span>
+              <span className="mobile-orbit orbit-two"></span>
+              <span className="mobile-orbit orbit-three"></span>
+              <span className="mobile-sun"></span>
+              <span className="mobile-planet mobile-planet-one"></span>
+              <span className="mobile-planet mobile-planet-two"></span>
+              <span className="mobile-planet mobile-planet-three"></span>
+            </div>
+          )}
         </div>
       </section>
 
@@ -205,85 +306,18 @@ function App() {
         </div>
 
         <div className="planet-showcase-grid">
-          <article className="planet-showcase-card">
-            <div className="planet-showcase-canvas">
-              <PlanetScene planet="mercury" />
-            </div>
-            <div className="planet-showcase-content">
-              <h3>Mercury</h3>
-              <p>A small dark-gray planet with a rocky surface covered in visible craters.</p>
-            </div>
-          </article>
+          {planets.map((item) => (
+            <article className="planet-showcase-card" key={item.name}>
+              <div className="planet-showcase-canvas">
+                {renderPlanetVisual(item)}
+              </div>
 
-          <article className="planet-showcase-card">
-            <div className="planet-showcase-canvas">
-              <PlanetScene planet="venus" />
-            </div>
-            <div className="planet-showcase-content">
-              <h3>Venus</h3>
-              <p>A golden-brown planet with a thick cloudy surface and a warm glowing look.</p>
-            </div>
-          </article>
-
-          <article className="planet-showcase-card">
-            <div className="planet-showcase-canvas">
-              <PlanetScene planet="earth" moon />
-            </div>
-            <div className="planet-showcase-content">
-              <h3>Earth</h3>
-              <p>A blue planet with green-brown land areas and soft white cloud layers.</p>
-            </div>
-          </article>
-
-          <article className="planet-showcase-card">
-            <div className="planet-showcase-canvas">
-              <PlanetScene planet="mars" />
-            </div>
-            <div className="planet-showcase-content">
-              <h3>Mars</h3>
-              <p>A reddish-brown planet with a dry, dusty, and rocky surface texture.</p>
-            </div>
-          </article>
-
-          <article className="planet-showcase-card">
-            <div className="planet-showcase-canvas">
-              <PlanetScene planet="jupiter" />
-            </div>
-            <div className="planet-showcase-content">
-              <h3>Jupiter</h3>
-             <p>A giant planet with swirling brown, cream, and white atmospheric bands.</p>
-            </div>
-          </article>
-
-          <article className="planet-showcase-card">
-            <div className="planet-showcase-canvas">
-              <PlanetScene planet="saturn" ring />
-            </div>
-            <div className="planet-showcase-content">
-              <h3>Saturn</h3>
-             <p>A pale yellow planet surrounded by thin rings across its middle area.</p>
-            </div>
-          </article>
-
-          <article className="planet-showcase-card">
-            <div className="planet-showcase-canvas">
-              <PlanetScene planet="uranus" />
-            </div>
-            <div className="planet-showcase-content">
-              <h3>Uranus</h3>
-              <p>A smooth blue-green planet with a cold, soft, and gaseous appearance.</p>
-            </div>
-          </article>
-
-          <article className="planet-showcase-card">
-            <div className="planet-showcase-canvas">
-              <PlanetScene planet="neptune" />
-            </div>
-            <div className="planet-showcase-content">
-              <h3>Neptune</h3>
-              <p>A deep blue planet with a dark mysterious atmosphere and smooth surface glow.</p>
-            </div>
-          </article>
+              <div className="planet-showcase-content">
+                <h3>{item.name}</h3>
+                <p>{item.desc}</p>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -296,12 +330,16 @@ function App() {
         <div className="about-grid">
           <div className="about-main">
             <p>
-              I have a strong interest in technology, particularly web development, mobile apps, UI/UX design, and usability evaluation.
-I enjoy creating digital displays that are not only attractive,
-but also neat, clear, and user-friendly.
+              I have a strong interest in technology, particularly web
+              development, mobile apps, UI/UX design, and usability evaluation. I
+              enjoy creating digital displays that are not only attractive, but
+              also neat, clear, and user-friendly.
             </p>
+
             <p>
-My focus is on creating responsive websites, functional systems, and modern interface design. I also study systems analysis, UML, software testing, and user requirements.
+              My focus is on creating responsive websites, functional systems,
+              and modern interface design. I also study systems analysis, UML,
+              software testing, and user requirements.
             </p>
           </div>
 
@@ -345,6 +383,7 @@ My focus is on creating responsive websites, functional systems, and modern inte
             <span>Selected Works</span>
             <h2>Featured Projects</h2>
           </div>
+
           <a href="#contact">Start Project →</a>
         </div>
 
@@ -390,15 +429,17 @@ My focus is on creating responsive websites, functional systems, and modern inte
         <div className="contact-card">
           <span>Available For Collaboration</span>
           <h2>Let’s build something cosmic.</h2>
+
           <p>
-            Tertarik bekerja sama, membuat project, atau berdiskusi tentang web
-            development dan UI/UX? Hubungi saya melalui email atau Instagram.
+            Interested in collaboration, project development, or discussing web
+            development and UI/UX? Reach me through email or Instagram.
           </p>
 
           <div className="contact-actions">
             <a href="mailto:owenknight126@gmail.com" className="btn btn-primary">
               Email Me
             </a>
+
             <a
               href="https://www.instagram.com/fevrii1z"
               target="_blank"
@@ -414,6 +455,7 @@ My focus is on creating responsive websites, functional systems, and modern inte
               <small>Email</small>
               <strong>owenknight126@gmail.com</strong>
             </div>
+
             <div>
               <small>Instagram</small>
               <strong>@fevrii1z</strong>
