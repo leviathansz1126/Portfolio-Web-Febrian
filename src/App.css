@@ -2790,3 +2790,1471 @@ body,
     radial-gradient(circle at 35% 30%, #60a5fa, #1d4ed8 50%, #020617 100%);
 }
 
+/* =========================================================
+   FEBRIAN PORTFOLIO - GALAXY THEME RESPONSIVE FINAL CSS
+   File: src/App.css
+   ========================================================= */
+
+/* ------------------------------
+   RESET + GLOBAL
+------------------------------ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-primary: #030712;
+  --bg-secondary: #070b1f;
+  --bg-card: rgba(12, 18, 42, 0.72);
+  --bg-card-solid: #0b1024;
+
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+
+  --border-soft: rgba(148, 163, 184, 0.18);
+  --border-glow: rgba(125, 211, 252, 0.28);
+
+  --blue: #38bdf8;
+  --cyan: #22d3ee;
+  --purple: #a78bfa;
+  --pink: #f472b6;
+  --yellow: #facc15;
+  --orange: #fb923c;
+
+  --radius-xl: 24px;
+  --radius-lg: 18px;
+  --radius-md: 14px;
+
+  --shadow-card: 0 24px 80px rgba(0, 0, 0, 0.42);
+  --shadow-soft: 0 18px 50px rgba(15, 23, 42, 0.3);
+
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: #030712;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(56, 189, 248, 0.22), transparent 30%),
+    radial-gradient(circle at 80% 10%, rgba(167, 139, 250, 0.2), transparent 32%),
+    radial-gradient(circle at 50% 80%, rgba(244, 114, 182, 0.12), transparent 35%),
+    linear-gradient(180deg, #020617 0%, #030712 45%, #050816 100%);
+  color: var(--text-primary);
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -2;
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.72) 1px, transparent 1px),
+    radial-gradient(circle, rgba(125, 211, 252, 0.55) 1px, transparent 1px);
+  background-size: 90px 90px, 140px 140px;
+  background-position: 0 0, 40px 60px;
+  opacity: 0.16;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 50% 30%, rgba(14, 165, 233, 0.08), transparent 36%),
+    radial-gradient(circle at 30% 70%, rgba(168, 85, 247, 0.08), transparent 36%),
+    linear-gradient(180deg, transparent, rgba(2, 6, 23, 0.72));
+}
+
+button,
+a,
+input,
+textarea {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img,
+canvas,
+svg {
+  max-width: 100%;
+}
+
+#root {
+  min-height: 100vh;
+  background: transparent;
+}
+
+/* ------------------------------
+   APP WRAPPER
+------------------------------ */
+
+.app,
+.portfolio-app,
+.galaxy-app {
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: transparent;
+}
+
+.app-shell {
+  position: relative;
+  z-index: 1;
+}
+
+.container,
+.section-inner {
+  width: min(1180px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
+.section {
+  position: relative;
+  padding: 110px 0;
+}
+
+.section-header {
+  max-width: 760px;
+  margin: 0 auto 42px;
+  text-align: center;
+}
+
+.section-kicker,
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding: 8px 14px;
+  border: 1px solid rgba(125, 211, 252, 0.24);
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.62);
+  color: #bae6fd;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.section-title {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -0.05em;
+}
+
+.section-description {
+  margin: 16px auto 0;
+  color: var(--text-secondary);
+  font-size: clamp(0.98rem, 1.6vw, 1.1rem);
+  line-height: 1.8;
+}
+
+/* ------------------------------
+   GALAXY LOADER
+------------------------------ */
+
+.galaxy-loader,
+.loader-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at center, rgba(56, 189, 248, 0.16), transparent 34%),
+    linear-gradient(180deg, #020617 0%, #030712 100%);
+}
+
+.loader-orbit {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  border: 1px solid rgba(125, 211, 252, 0.28);
+  border-radius: 50%;
+  animation: orbitSpin 1.4s linear infinite;
+}
+
+.loader-orbit::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #ffffff, #38bdf8 45%, #1d4ed8 100%);
+  box-shadow: 0 0 26px rgba(56, 189, 248, 0.9);
+}
+
+.loader-core {
+  position: absolute;
+  inset: 43px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 30%, #fff7ed, #facc15 35%, #fb923c 65%, #7c2d12);
+  box-shadow:
+    0 0 40px rgba(251, 146, 60, 0.6),
+    0 0 90px rgba(250, 204, 21, 0.24);
+}
+
+.loader-text {
+  position: absolute;
+  top: calc(50% + 92px);
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+@keyframes orbitSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ------------------------------
+   NAVBAR
+------------------------------ */
+
+.navbar,
+.site-navbar {
+  position: fixed;
+  top: 18px;
+  left: 0;
+  right: 0;
+  z-index: 80;
+  pointer-events: none;
+}
+
+.nav-inner,
+.nav-content {
+  width: min(1180px, calc(100% - 36px));
+  min-height: 68px;
+  margin-inline: auto;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  pointer-events: auto;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: 999px;
+  background: rgba(2, 6, 23, 0.74);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow:
+    0 18px 70px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* brand tulisan Febrian sengaja tidak dipakai */
+.brand,
+.nav-brand,
+.logo-text {
+  display: none !important;
+}
+
+.nav-profile,
+.profile-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  min-width: 0;
+  padding: 6px 13px 6px 7px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.72);
+  border: 1px solid rgba(125, 211, 252, 0.2);
+}
+
+.profile-avatar,
+.nav-avatar {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 25%, #ffffff, #38bdf8 35%, #7c3aed 100%);
+  color: #020617;
+  font-weight: 900;
+  box-shadow:
+    0 0 24px rgba(56, 189, 248, 0.36),
+    inset 0 0 16px rgba(255, 255, 255, 0.35);
+}
+
+.profile-meta,
+.nav-profile-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.profile-name,
+.nav-profile-name {
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-weight: 800;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.profile-role,
+.nav-profile-role {
+  color: var(--text-muted);
+  font-size: 0.74rem;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.nav-links,
+.nav-menu {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  min-width: 0;
+}
+
+.nav-link,
+.nav-menu a {
+  position: relative;
+  padding: 10px 14px;
+  border-radius: 999px;
+  color: rgba(226, 232, 240, 0.78);
+  font-size: 0.88rem;
+  font-weight: 700;
+  transition:
+    color 180ms ease,
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.nav-link:hover,
+.nav-menu a:hover,
+.nav-link.active {
+  color: #ffffff;
+  background: rgba(56, 189, 248, 0.12);
+  transform: translateY(-1px);
+}
+
+/* ------------------------------
+   HERO
+------------------------------ */
+
+.hero,
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 128px 0 86px;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 680px;
+  height: 680px;
+  right: -240px;
+  top: 80px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(56, 189, 248, 0.14), transparent 62%),
+    radial-gradient(circle, rgba(167, 139, 250, 0.12), transparent 42%);
+  filter: blur(4px);
+  pointer-events: none;
+}
+
+.hero-content,
+.hero-grid {
+  width: min(1180px, calc(100% - 40px));
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(430px, 1.05fr);
+  align-items: center;
+  gap: 58px;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-text,
+.hero-copy {
+  min-width: 0;
+}
+
+.hero-title,
+.hero h1 {
+  margin: 0;
+  max-width: 760px;
+  color: #ffffff;
+  font-size: clamp(3.4rem, 7vw, 6.8rem);
+  line-height: 0.9;
+  letter-spacing: -0.075em;
+  text-wrap: balance;
+}
+
+.gradient-text,
+.text-gradient {
+  background: linear-gradient(100deg, #ffffff 5%, #7dd3fc 38%, #c4b5fd 68%, #f9a8d4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-description,
+.hero-subtitle,
+.hero p {
+  max-width: 650px;
+  margin: 24px 0 0;
+  color: var(--text-secondary);
+  font-size: clamp(1rem, 1.8vw, 1.16rem);
+  line-height: 1.82;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 34px;
+}
+
+.btn,
+.button,
+.cta-button {
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 0 20px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-weight: 800;
+  cursor: pointer;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    background 180ms ease,
+    border-color 180ms ease;
+}
+
+.btn-primary,
+.primary-button,
+.cta-primary {
+  color: #020617;
+  background: linear-gradient(135deg, #7dd3fc, #c4b5fd, #f9a8d4);
+  box-shadow: 0 16px 42px rgba(56, 189, 248, 0.22);
+}
+
+.btn-secondary,
+.secondary-button,
+.cta-secondary {
+  color: var(--text-primary);
+  border-color: rgba(148, 163, 184, 0.22);
+  background: rgba(15, 23, 42, 0.62);
+}
+
+.btn:hover,
+.button:hover,
+.cta-button:hover {
+  transform: translateY(-2px);
+}
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  max-width: 620px;
+  margin-top: 38px;
+}
+
+.stat-card,
+.hero-stat {
+  padding: 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  background: rgba(15, 23, 42, 0.55);
+  box-shadow: var(--shadow-soft);
+}
+
+.stat-value,
+.hero-stat strong {
+  display: block;
+  color: #ffffff;
+  font-size: 1.45rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+}
+
+.stat-label,
+.hero-stat span {
+  display: block;
+  margin-top: 4px;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.hero-visual,
+.hero-scene,
+.solar-system-wrapper,
+.real-solar-system-wrap {
+  position: relative;
+  min-height: 560px;
+  width: 100%;
+  border-radius: 34px;
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  background:
+    radial-gradient(circle at center, rgba(56, 189, 248, 0.09), transparent 38%),
+    radial-gradient(circle at 80% 20%, rgba(167, 139, 250, 0.13), transparent 36%),
+    rgba(2, 6, 23, 0.5);
+  box-shadow: var(--shadow-card);
+}
+
+.hero-visual canvas,
+.hero-scene canvas,
+.solar-system-wrapper canvas,
+.real-solar-system-wrap canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* ------------------------------
+   GENERAL CARDS / SECTIONS
+------------------------------ */
+
+.card,
+.glass-card,
+.project-card,
+.skill-card,
+.about-card,
+.contact-card,
+.planet-card {
+  position: relative;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  background:
+    linear-gradient(180deg, rgba(15, 23, 42, 0.82), rgba(15, 23, 42, 0.54)),
+    rgba(2, 6, 23, 0.72);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.card::before,
+.glass-card::before,
+.project-card::before,
+.skill-card::before,
+.about-card::before,
+.contact-card::before,
+.planet-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 34%),
+    radial-gradient(circle at 20% 0%, rgba(56, 189, 248, 0.12), transparent 36%);
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.card > *,
+.glass-card > *,
+.project-card > *,
+.skill-card > *,
+.about-card > *,
+.contact-card > *,
+.planet-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.about-grid,
+.skills-grid,
+.projects-grid,
+.contact-grid {
+  width: min(1180px, calc(100% - 40px));
+  margin-inline: auto;
+  display: grid;
+  gap: 22px;
+}
+
+.about-grid {
+  grid-template-columns: 0.85fr 1.15fr;
+}
+
+.skills-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.projects-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.contact-grid {
+  grid-template-columns: 0.95fr 1.05fr;
+  align-items: stretch;
+}
+
+.about-card,
+.skill-card,
+.project-card,
+.contact-card {
+  padding: 26px;
+}
+
+.card-title,
+.about-card h3,
+.skill-card h3,
+.project-card h3,
+.contact-card h3 {
+  margin: 0 0 10px;
+  color: #ffffff;
+  font-size: 1.15rem;
+  letter-spacing: -0.03em;
+}
+
+.card-text,
+.about-card p,
+.skill-card p,
+.project-card p,
+.contact-card p {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
+
+.tag-list,
+.tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.tag,
+.tech-tag,
+.skill-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0 11px;
+  border-radius: 999px;
+  border: 1px solid rgba(125, 211, 252, 0.18);
+  background: rgba(56, 189, 248, 0.08);
+  color: #bae6fd;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+/* ------------------------------
+   PLANETS SECTION
+------------------------------ */
+
+.planets-section,
+.planet-section {
+  position: relative;
+  padding: 110px 0;
+}
+
+.planets-grid,
+.planet-grid {
+  width: min(1180px, calc(100% - 40px));
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.planet-card {
+  min-height: 390px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.planet-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(125, 211, 252, 0.34);
+  box-shadow:
+    0 28px 90px rgba(0, 0, 0, 0.46),
+    0 0 38px rgba(56, 189, 248, 0.08);
+}
+
+.planet-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.planet-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 42px;
+  height: 32px;
+  padding: 0 10px;
+  border-radius: 999px;
+  color: #bae6fd;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(125, 211, 252, 0.2);
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.planet-title,
+.planet-name,
+.planet-card h3 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 1.42rem;
+  line-height: 1.12;
+  letter-spacing: -0.045em;
+}
+
+.planet-subtitle {
+  margin-top: 6px;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+
+.planet-description,
+.planet-card p {
+  margin: 16px 0 0;
+  color: var(--text-secondary);
+  font-size: 0.94rem;
+  line-height: 1.76;
+}
+
+/* Desktop: tempat scene 3D planet card */
+.planet-scene-wrap,
+.planet-scene,
+.planet-canvas-wrap {
+  position: relative;
+  width: 100%;
+  min-height: 178px;
+  margin: 8px 0 18px;
+  border-radius: 22px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at center, rgba(56, 189, 248, 0.08), transparent 46%),
+    rgba(2, 6, 23, 0.34);
+}
+
+.planet-scene-wrap canvas,
+.planet-scene canvas,
+.planet-canvas-wrap canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Mobile/static planet visual */
+.planet-static {
+  --planet-size: 126px;
+  --planet-a: #7dd3fc;
+  --planet-b: #1d4ed8;
+  --planet-c: #0f172a;
+
+  position: relative;
+  display: none;
+  width: var(--planet-size);
+  height: var(--planet-size);
+  margin: 12px auto 22px;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 30% 24%, rgba(255, 255, 255, 0.95), transparent 0 13%, rgba(255, 255, 255, 0.3) 14%, transparent 26%),
+    radial-gradient(circle at 36% 28%, var(--planet-a), var(--planet-b) 56%, var(--planet-c) 100%);
+  box-shadow:
+    inset -22px -18px 36px rgba(0, 0, 0, 0.42),
+    inset 12px 10px 24px rgba(255, 255, 255, 0.12),
+    0 0 34px color-mix(in srgb, var(--planet-a), transparent 54%),
+    0 18px 46px rgba(0, 0, 0, 0.35);
+  overflow: visible;
+}
+
+.planet-static::before {
+  content: "";
+  position: absolute;
+  inset: 12%;
+  border-radius: inherit;
+  background:
+    linear-gradient(110deg, transparent 0 24%, rgba(255, 255, 255, 0.14) 26% 31%, transparent 34% 100%),
+    radial-gradient(circle at 64% 72%, rgba(0, 0, 0, 0.16), transparent 24%);
+  opacity: 0.75;
+}
+
+.planet-static::after {
+  content: "";
+  position: absolute;
+  inset: -22px;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(circle, color-mix(in srgb, var(--planet-a), transparent 68%), transparent 62%);
+  opacity: 0.9;
+}
+
+/* Support beberapa kemungkinan class dari App.jsx */
+.planet-static.sun,
+.planet-static.planet-sun,
+.planet-static[data-planet="sun"] {
+  --planet-size: 140px;
+  --planet-a: #fff7ad;
+  --planet-b: #f59e0b;
+  --planet-c: #7c2d12;
+}
+
+.planet-static.mercury,
+.planet-static.planet-mercury,
+.planet-static[data-planet="mercury"] {
+  --planet-a: #d6d3d1;
+  --planet-b: #78716c;
+  --planet-c: #292524;
+}
+
+.planet-static.venus,
+.planet-static.planet-venus,
+.planet-static[data-planet="venus"] {
+  --planet-a: #fde68a;
+  --planet-b: #f97316;
+  --planet-c: #7c2d12;
+}
+
+.planet-static.earth,
+.planet-static.planet-earth,
+.planet-static[data-planet="earth"] {
+  --planet-a: #86efac;
+  --planet-b: #2563eb;
+  --planet-c: #0f172a;
+}
+
+.planet-static.mars,
+.planet-static.planet-mars,
+.planet-static[data-planet="mars"] {
+  --planet-a: #fca5a5;
+  --planet-b: #dc2626;
+  --planet-c: #450a0a;
+}
+
+.planet-static.jupiter,
+.planet-static.planet-jupiter,
+.planet-static[data-planet="jupiter"] {
+  --planet-size: 146px;
+  --planet-a: #fed7aa;
+  --planet-b: #c2410c;
+  --planet-c: #431407;
+  background:
+    linear-gradient(
+      180deg,
+      #fed7aa 0%,
+      #fdba74 15%,
+      #9a3412 28%,
+      #fef3c7 40%,
+      #c2410c 55%,
+      #7c2d12 72%,
+      #431407 100%
+    );
+}
+
+.planet-static.saturn,
+.planet-static.planet-saturn,
+.planet-static[data-planet="saturn"] {
+  --planet-size: 132px;
+  --planet-a: #fde68a;
+  --planet-b: #ca8a04;
+  --planet-c: #713f12;
+}
+
+.planet-static.saturn .planet-ring,
+.planet-static.planet-saturn .planet-ring,
+.planet-static[data-planet="saturn"] .planet-ring,
+.planet-static.saturn::before,
+.planet-static.planet-saturn::before,
+.planet-static[data-planet="saturn"]::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 188%;
+  height: 52%;
+  border-radius: 999px;
+  border: 12px solid rgba(253, 230, 138, 0.45);
+  transform: translate(-50%, -50%) rotate(-16deg);
+  background: transparent;
+  box-shadow:
+    0 0 18px rgba(250, 204, 21, 0.18),
+    inset 0 0 14px rgba(255, 255, 255, 0.1);
+}
+
+.planet-static.uranus,
+.planet-static.planet-uranus,
+.planet-static[data-planet="uranus"] {
+  --planet-a: #a5f3fc;
+  --planet-b: #06b6d4;
+  --planet-c: #164e63;
+}
+
+.planet-static.neptune,
+.planet-static.planet-neptune,
+.planet-static[data-planet="neptune"] {
+  --planet-a: #bfdbfe;
+  --planet-b: #2563eb;
+  --planet-c: #1e1b4b;
+}
+
+.planet-static.pluto,
+.planet-static.planet-pluto,
+.planet-static[data-planet="pluto"] {
+  --planet-size: 112px;
+  --planet-a: #e5e7eb;
+  --planet-b: #a8a29e;
+  --planet-c: #44403c;
+}
+
+/* Kalau App.jsx bikin inner element planet-core */
+.planet-core {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: inherit;
+}
+
+.planet-ring {
+  pointer-events: none;
+}
+
+/* ------------------------------
+   CONTACT
+------------------------------ */
+
+.contact-list {
+  display: grid;
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 58px;
+  padding: 14px 16px;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: 18px;
+  background: rgba(15, 23, 42, 0.58);
+  color: var(--text-primary);
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.contact-link:hover {
+  transform: translateY(-2px);
+  border-color: rgba(125, 211, 252, 0.32);
+  background: rgba(15, 23, 42, 0.78);
+}
+
+.contact-link span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.footer,
+.site-footer {
+  padding: 44px 0;
+  border-top: 1px solid rgba(148, 163, 184, 0.12);
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* ------------------------------
+   DESKTOP/TABLET RESPONSIVE
+------------------------------ */
+
+@media (max-width: 1100px) {
+  .hero-content,
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 38px;
+  }
+
+  .hero-visual,
+  .hero-scene,
+  .solar-system-wrapper,
+  .real-solar-system-wrap {
+    min-height: 460px;
+  }
+
+  .planets-grid,
+  .planet-grid,
+  .projects-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .about-grid,
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 860px) {
+  .nav-inner,
+  .nav-content {
+    border-radius: 28px;
+    align-items: center;
+  }
+
+  .nav-links,
+  .nav-menu {
+    gap: 2px;
+  }
+
+  .nav-link,
+  .nav-menu a {
+    padding: 9px 10px;
+    font-size: 0.8rem;
+  }
+}
+
+/* ------------------------------
+   MOBILE FINAL FIX
+   Ini bagian utama supaya HP tidak putih dan tidak berat.
+------------------------------ */
+
+@media (max-width: 768px) {
+  html,
+  body,
+  #root,
+  .app,
+  .portfolio-app,
+  .galaxy-app {
+    width: 100%;
+    min-height: 100%;
+    background-color: #030712 !important;
+    color: #f8fafc;
+    overflow-x: hidden;
+  }
+
+  body {
+    background:
+      radial-gradient(circle at 24% 0%, rgba(56, 189, 248, 0.16), transparent 28%),
+      radial-gradient(circle at 82% 10%, rgba(167, 139, 250, 0.16), transparent 30%),
+      radial-gradient(circle at 50% 88%, rgba(244, 114, 182, 0.08), transparent 32%),
+      linear-gradient(180deg, #020617 0%, #030712 54%, #050816 100%) !important;
+  }
+
+  body::before {
+    background-size: 86px 86px, 132px 132px;
+    opacity: 0.11;
+  }
+
+  body::after {
+    background:
+      radial-gradient(circle at 40% 22%, rgba(56, 189, 248, 0.06), transparent 34%),
+      linear-gradient(180deg, transparent, rgba(2, 6, 23, 0.7));
+  }
+
+  .container,
+  .section-inner,
+  .hero-content,
+  .hero-grid,
+  .about-grid,
+  .skills-grid,
+  .projects-grid,
+  .contact-grid,
+  .planets-grid,
+  .planet-grid {
+    width: min(100% - 28px, 560px);
+  }
+
+  .section,
+  .planets-section,
+  .planet-section {
+    padding: 76px 0;
+  }
+
+  .section-header {
+    margin-bottom: 28px;
+    text-align: left;
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 10vw, 3.1rem);
+    letter-spacing: -0.06em;
+  }
+
+  .section-description {
+    font-size: 0.96rem;
+    line-height: 1.72;
+  }
+
+  /* Navbar mobile */
+  .navbar,
+  .site-navbar {
+    top: 10px;
+  }
+
+  .nav-inner,
+  .nav-content {
+    width: calc(100% - 20px);
+    min-height: 60px;
+    padding: 8px;
+    border-radius: 22px;
+    background: rgba(2, 6, 23, 0.86);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .nav-profile,
+  .profile-pill {
+    max-width: 178px;
+    padding: 5px 9px 5px 5px;
+    gap: 8px;
+  }
+
+  .profile-avatar,
+  .nav-avatar {
+    width: 36px;
+    height: 36px;
+    font-size: 0.82rem;
+  }
+
+  .profile-name,
+  .nav-profile-name {
+    max-width: 108px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.86rem;
+  }
+
+  .profile-role,
+  .nav-profile-role {
+    max-width: 108px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.68rem;
+  }
+
+  .nav-links,
+  .nav-menu {
+    max-width: calc(100vw - 220px);
+    overflow-x: auto;
+    overflow-y: hidden;
+    justify-content: flex-start;
+    scrollbar-width: none;
+  }
+
+  .nav-links::-webkit-scrollbar,
+  .nav-menu::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-link,
+  .nav-menu a {
+    flex: 0 0 auto;
+    padding: 8px 10px;
+    font-size: 0.76rem;
+  }
+
+  /* Hero mobile */
+  .hero,
+  .hero-section {
+    min-height: auto;
+    padding: 112px 0 58px;
+  }
+
+  .hero::before {
+    width: 360px;
+    height: 360px;
+    right: -170px;
+    top: 86px;
+    opacity: 0.8;
+    filter: blur(0);
+  }
+
+  .hero-content,
+  .hero-grid {
+    display: block;
+  }
+
+  .hero-title,
+  .hero h1 {
+    max-width: 100%;
+    font-size: clamp(3rem, 16vw, 4.7rem);
+    line-height: 0.92;
+    letter-spacing: -0.075em;
+  }
+
+  .hero-description,
+  .hero-subtitle,
+  .hero p {
+    margin-top: 20px;
+    font-size: 0.98rem;
+    line-height: 1.72;
+  }
+
+  .hero-actions {
+    margin-top: 26px;
+    gap: 10px;
+  }
+
+  .btn,
+  .button,
+  .cta-button {
+    width: 100%;
+    min-height: 48px;
+    padding-inline: 16px;
+  }
+
+  .hero-stats {
+    grid-template-columns: 1fr;
+    margin-top: 26px;
+    gap: 10px;
+  }
+
+  .stat-card,
+  .hero-stat {
+    padding: 14px;
+    border-radius: 18px;
+    background: rgba(15, 23, 42, 0.74);
+  }
+
+  /* Penting: visual 3D hero tidak ditampilkan di mobile */
+  .hero-visual,
+  .hero-scene,
+  .solar-system-wrapper,
+  .real-solar-system-wrap {
+    display: none !important;
+  }
+
+  /* Grid mobile */
+  .about-grid,
+  .skills-grid,
+  .projects-grid,
+  .contact-grid,
+  .planets-grid,
+  .planet-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .about-card,
+  .skill-card,
+  .project-card,
+  .contact-card,
+  .planet-card {
+    border-radius: 22px;
+    background:
+      linear-gradient(180deg, rgba(15, 23, 42, 0.9), rgba(8, 13, 30, 0.92)),
+      #080d1e !important;
+    border-color: rgba(148, 163, 184, 0.16);
+    box-shadow: 0 18px 46px rgba(0, 0, 0, 0.34);
+  }
+
+  .about-card,
+  .skill-card,
+  .project-card,
+  .contact-card {
+    padding: 22px;
+  }
+
+  /* Planet mobile final */
+  .planet-card {
+    min-height: auto;
+    padding: 22px;
+    background:
+      radial-gradient(circle at 50% 20%, rgba(56, 189, 248, 0.08), transparent 34%),
+      linear-gradient(180deg, rgba(15, 23, 42, 0.94), rgba(7, 11, 28, 0.96)),
+      #070b1c !important;
+  }
+
+  .planet-card:hover {
+    transform: none;
+  }
+
+  /* Penting: matikan canvas / WebGL planet card di mobile */
+  .planet-scene-wrap,
+  .planet-scene,
+  .planet-canvas-wrap,
+  .planet-card canvas {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  /* Tampilkan planet CSS static */
+  .planet-static {
+    display: block !important;
+  }
+
+  .planet-title,
+  .planet-name,
+  .planet-card h3 {
+    font-size: 1.32rem;
+  }
+
+  .planet-description,
+  .planet-card p {
+    font-size: 0.94rem;
+    line-height: 1.7;
+  }
+
+  .planet-card-header {
+    margin-bottom: 10px;
+  }
+
+  .tag-list,
+  .tech-list {
+    gap: 7px;
+  }
+
+  .tag,
+  .tech-tag,
+  .skill-pill {
+    min-height: 30px;
+    font-size: 0.78rem;
+  }
+
+  .contact-link {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+    padding: 14px;
+  }
+
+  .footer,
+  .site-footer {
+    padding: 34px 14px;
+    font-size: 0.86rem;
+  }
+
+  /* Kurangi animasi/efek berat di HP */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms;
+    animation-iteration-count: 1;
+    scroll-behavior: auto;
+  }
+}
+
+/* ------------------------------
+   SMALL PHONE
+------------------------------ */
+
+@media (max-width: 430px) {
+  .nav-profile,
+  .profile-pill {
+    max-width: 150px;
+  }
+
+  .profile-name,
+  .profile-role,
+  .nav-profile-name,
+  .nav-profile-role {
+    max-width: 82px;
+  }
+
+  .nav-links,
+  .nav-menu {
+    max-width: calc(100vw - 185px);
+  }
+
+  .nav-link,
+  .nav-menu a {
+    padding-inline: 8px;
+  }
+
+  .hero-title,
+  .hero h1 {
+    font-size: clamp(2.65rem, 15vw, 4rem);
+  }
+
+  .planet-static {
+    --planet-size: 112px;
+  }
+
+  .planet-static.sun,
+  .planet-static.planet-sun,
+  .planet-static[data-planet="sun"],
+  .planet-static.jupiter,
+  .planet-static.planet-jupiter,
+  .planet-static[data-planet="jupiter"] {
+    --planet-size: 124px;
+  }
+
+  .planet-static.saturn,
+  .planet-static.planet-saturn,
+  .planet-static[data-planet="saturn"] {
+    --planet-size: 116px;
+  }
+
+  .about-card,
+  .skill-card,
+  .project-card,
+  .contact-card,
+  .planet-card {
+    padding: 19px;
+  }
+}
+
+/* ------------------------------
+   ACCESSIBILITY
+------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
