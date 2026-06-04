@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
 *::after {
   box-sizing: border-box;
 }
@@ -3510,3 +3510,77 @@ body {
     border-radius: 22px !important;
   }
 }
+
+/* FONT FINAL - CLEAN MODERN */
+
+* {
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+}
+
+body {
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+}
+
+/* HERO TITLE */
+.hero-title-custom,
+.hero-content h1,
+.split-title,
+.split-title *,
+.split-title span {
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+  font-weight: 800 !important;
+  line-height: 0.96 !important;
+  letter-spacing: -0.075em !important;
+  overflow: visible !important;
+}
+
+/* UKURAN TITLE BIAR GA KEGEDEAN BANGET */
+.hero-title-custom,
+.hero-content h1,
+.split-title {
+  font-size: clamp(4.2rem, 7vw, 8rem) !important;
+}
+
+/* WARNA FEBRIAN SIDIQ */
+.hero-title-main,
+.split-title span:nth-child(2),
+.hero-content h1 span:nth-child(2),
+.hero-content h1 span:nth-child(3) {
+  background: linear-gradient(180deg, #ffffff 0%, #ffffff 45%, #ffffff 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* BIAR HURUF GA KEPOTONG */
+.hero-title-custom span,
+.hero-content h1 span,
+.split-title span {
+  display: inline-block !important;
+  padding-bottom: 0.08em !important;
+  overflow: visible !important;
+}
+
+/* DESCRIPTION */
+.hero-description,
+.hero-description span {
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+  line-height: 1.75 !important;
+  letter-spacing: -0.015em !important;
+}
+
+/* NAV */
+.nav-brand,
+.nav-links a {
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+  font-weight: 800 !important;
+}
+
+/* BUTTON */
+.btn {
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+  font-weight: 800 !important;
+}
+

@@ -129,7 +129,7 @@ function Navbar() {
     <header className="navbar">
       <nav className="nav-inner">
         <a href="#home" className="nav-brand">
-          Portofolio
+
         </a>
 
         <div className="nav-links">
@@ -187,8 +187,7 @@ function HeroSection({ onBlurComplete }) {
           </div>
 
 <h1 className="hero-title-custom">
-  <span>Hi I'm </span>
-  <span className="hero-title-main">Febrian</span>
+  <span>M Febrian Sidiq Hafadzah</span>
 </h1>
           <BlurText
             className="hero-description"
