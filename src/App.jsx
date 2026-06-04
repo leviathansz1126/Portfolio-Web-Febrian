@@ -16,12 +16,27 @@ import BlurText from "./components/BlurText";
 import ScrollReveal from "./components/ScrollReveal";
 import Lanyard from "./components/Lanyard";
 import PixelTransition from "./components/PixelTransition";
+import PageMotion from "./components/PageMotion";
+import StaggeredMenu from "./components/StaggeredMenu";
 
 const navItems = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Project", href: "#projects" },
   { label: "Contact", href: "#contact" },
+];
+
+const staggeredMenuItems = [
+  { label: "Home", ariaLabel: "Go to home section", link: "#home" },
+  { label: "About", ariaLabel: "Go to about section", link: "#about" },
+  { label: "Project", ariaLabel: "Go to project section", link: "#projects" },
+  { label: "Contact", ariaLabel: "Go to contact section", link: "#contact" },
+];
+
+const staggeredSocialItems = [
+  { label: "Instagram", link: "https://www.instagram.com/fevrii1z" },
+  { label: "Email", link: "mailto:owenknight126@gmail.com" },
+  { label: "GitHub", link: "https://github.com" },
 ];
 
 const tools = [
@@ -108,17 +123,24 @@ const contactLinks = [
 
 function Loader() {
   return (
-    <div className="loader">
-      <div className="loader-card">
-        <span className="loader-logo">F</span>
+    <div className="loader premium-loader">
+      <div className="premium-loader-card">
+        <div className="premium-loader-top">
+          <span className="premium-loader-mark">F</span>
 
-        <div className="loader-copy">
-          <strong>Febrian Portfolio</strong>
-          <p>Preparing Interface...</p>
+          <div className="premium-loader-copy">
+            <strong>Febrian Portfolio</strong>
+            <p>Preparing interactive experience</p>
+          </div>
         </div>
 
-        <div className="loader-line">
+        <div className="premium-loader-progress">
           <span />
+        </div>
+
+        <div className="premium-loader-bottom">
+          <span>React • Vite • Portfolio</span>
+          <small>Loading</small>
         </div>
       </div>
     </div>
@@ -127,21 +149,21 @@ function Loader() {
 
 function Navbar() {
   return (
-    <header className="navbar">
-      <nav className="nav-inner">
-        <a href="#home" className="nav-brand">
-
-        </a>
-
-        <div className="nav-links">
-          {navItems.map((item) => (
-            <a href={item.href} key={item.href}>
-              {item.label}
-            </a>
-          ))}
-        </div>
-      </nav>
-    </header>
+    <StaggeredMenu
+      position="right"
+      items={staggeredMenuItems}
+      socialItems={staggeredSocialItems}
+      displaySocials
+      displayItemNumbering={true}
+      menuButtonColor="#ffffff"
+      openMenuButtonColor="#ffffff"
+      changeMenuColorOnOpen={true}
+      colors={["#5e00fe", "#00ffab"]}
+      accentColor="#00ffab"
+      logoUrl="/icons.svg"
+      isFixed={false}
+      closeOnClickAway={true}
+    />
   );
 }
 
@@ -473,7 +495,7 @@ function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 900);
+    }, 2500);
 
     return () => clearTimeout(timer);
   }, []);
@@ -487,8 +509,9 @@ function App() {
       {loading && <Loader />}
 
       <div className="app">
-        <AuroraBackground />
-        <Navbar />
+      <PageMotion />
+      <AuroraBackground />
+      <Navbar />
 
         <main>
           <HeroSection onBlurComplete={handleBlurTextComplete} />
