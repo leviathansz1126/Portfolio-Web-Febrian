@@ -3584,3 +3584,548 @@ body {
   font-weight: 800 !important;
 }
 
+/* ======================================================
+   WIDEN SECTION CONTENT - BIAR KIRI KANAN GA KOSONG
+   ====================================================== */
+
+:root {
+  --section-wide: min(1540px, calc(100% - 70px));
+}
+
+/* Semua container section jadi lebih lebar */
+.container,
+.manifesto-section .container,
+.about-section .container,
+.tools-section .container,
+.projects-section .container,
+.contact-section .container {
+  width: var(--section-wide) !important;
+  max-width: var(--section-wide) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Quotes panel ikut melebar */
+.manifesto-panel {
+  width: 100% !important;
+}
+
+/* About panel ikut melebar */
+.about-lanyard-panel {
+  width: 100% !important;
+  grid-template-columns: minmax(0, 1fr) minmax(420px, 0.8fr) !important;
+}
+
+/* Tools card lebih nyebar */
+.service-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 28px !important;
+}
+
+/* Project card lebih nyebar */
+.projects-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 24px !important;
+}
+
+/* Contact section lebih lebar */
+.contact-grid {
+  grid-template-columns: minmax(0, 1fr) minmax(420px, 0.95fr) !important;
+  gap: 28px !important;
+}
+
+/* Section header jangan terlalu sempit */
+.section-header {
+  max-width: 920px !important;
+}
+
+/* Desktop besar: lebih lega lagi */
+@media (min-width: 1600px) {
+  :root {
+    --section-wide: min(1520px, calc(100% - 130px));
+  }
+
+  .projects-grid {
+    gap: 28px !important;
+  }
+}
+
+/* Laptop sedang */
+@media (max-width: 1280px) {
+  :root {
+    --section-wide: calc(100% - 72px);
+  }
+
+  .projects-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  :root {
+    --section-wide: calc(100% - 44px);
+  }
+
+  .service-grid,
+  .projects-grid,
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .about-lanyard-panel {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* HP */
+@media (max-width: 768px) {
+  :root {
+    --section-wide: calc(100% - 28px);
+  }
+
+  .container,
+  .manifesto-section .container,
+  .about-section .container,
+  .tools-section .container,
+  .projects-section .container,
+  .contact-section .container {
+    width: var(--section-wide) !important;
+    max-width: var(--section-wide) !important;
+  }
+}
+
+/* QUOTES PANEL FIT FIX */
+
+.manifesto-panel {
+  min-height: auto !important;
+  padding: 54px 64px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+}
+
+.portfolio-scroll-reveal,
+.portfolio-scroll-text {
+  max-width: 100% !important;
+  margin: 0 !important;
+}
+
+.portfolio-scroll-text {
+  font-size: clamp(3rem, 5.8vw, 5.8rem) !important;
+  line-height: 0.98 !important;
+  letter-spacing: -0.07em !important;
+  word-break: normal !important;
+}
+
+/* biar kata panjang tetap aman */
+.portfolio-scroll-text .word {
+  display: inline-block !important;
+}
+
+/* laptop kecil */
+@media (max-width: 1280px) {
+  .manifesto-panel {
+    padding: 46px 48px !important;
+  }
+
+  .portfolio-scroll-text {
+    font-size: clamp(2.8rem, 6vw, 4.8rem) !important;
+  }
+}
+
+/* HP */
+@media (max-width: 768px) {
+  .manifesto-panel {
+    padding: 32px 24px !important;
+    border-radius: 24px !important;
+  }
+
+  .portfolio-scroll-text {
+    font-size: clamp(2.25rem, 11vw, 3.4rem) !important;
+    line-height: 1.02 !important;
+    letter-spacing: -0.055em !important;
+  }
+}/* QUOTES PANEL FIT FIX */
+
+.manifesto-panel {
+  min-height: auto !important;
+  padding: 54px 64px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+}
+
+.portfolio-scroll-reveal,
+.portfolio-scroll-text {
+  max-width: 100% !important;
+  margin: 0 !important;
+}
+
+.portfolio-scroll-text {
+  font-size: clamp(3rem, 5.8vw, 5.8rem) !important;
+  line-height: 0.98 !important;
+  letter-spacing: -0.07em !important;
+  word-break: normal !important;
+}
+
+/* biar kata panjang tetap aman */
+.portfolio-scroll-text .word {
+  display: inline-block !important;
+}
+
+/* laptop kecil */
+@media (max-width: 1280px) {
+  .manifesto-panel {
+    padding: 46px 48px !important;
+  }
+
+  .portfolio-scroll-text {
+    font-size: clamp(2.8rem, 6vw, 4.8rem) !important;
+  }
+}
+
+/* HP */
+@media (max-width: 768px) {
+  .manifesto-panel {
+    padding: 32px 24px !important;
+    border-radius: 24px !important;
+  }
+
+  .portfolio-scroll-text {
+    font-size: clamp(2.25rem, 11vw, 3.4rem) !important;
+    line-height: 1.02 !important;
+    letter-spacing: -0.055em !important;
+  }
+}
+
+/* ======================================================
+   QUOTES PANEL + PIXEL TRANSITION CARD
+   ====================================================== */
+
+.manifesto-panel-with-pixel {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 360px !important;
+  gap: 56px !important;
+  align-items: center !important;
+  padding: 58px 64px !important;
+  overflow: hidden !important;
+}
+
+.manifesto-copy {
+  min-width: 0 !important;
+  text-align: left !important;
+}
+
+.manifesto-pixel-wrap {
+  justify-self: end !important;
+  width: 360px !important;
+  max-width: 100% !important;
+}
+
+.custom-pixel-card {
+  width: 360px !important;
+  max-width: 100% !important;
+  border-radius: 28px !important;
+  border-color: rgba(0, 255, 171, 0.22) !important;
+}
+
+.manifesto-pixel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale(0.1) contrast(1.08) brightness(0.88);
+}
+
+.manifesto-pixel-content {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 10px;
+  padding: 24px;
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(0, 255, 171, 0.22), transparent 38%),
+    radial-gradient(circle at 18% 80%, rgba(94, 0, 254, 0.24), transparent 42%),
+    #07090d;
+}
+
+.manifesto-pixel-content span {
+  color: #00ffab;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.manifesto-pixel-content strong {
+  color: #ffffff;
+  font-size: clamp(2rem, 3vw, 3rem);
+  font-weight: 900;
+  letter-spacing: -0.06em;
+  line-height: 0.95;
+}
+
+.manifesto-pixel-content p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.66);
+  font-weight: 700;
+}
+
+/* quote teks tetap fit */
+.manifesto-panel-with-pixel .portfolio-scroll-text {
+  font-size: clamp(2.9rem, 5vw, 5.2rem) !important;
+  line-height: 0.98 !important;
+  letter-spacing: -0.07em !important;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .manifesto-panel-with-pixel {
+    grid-template-columns: 1fr !important;
+    padding: 44px 34px !important;
+    gap: 34px !important;
+  }
+
+  .manifesto-pixel-wrap {
+    justify-self: start !important;
+    width: min(360px, 100%) !important;
+  }
+}
+
+/* HP */
+@media (max-width: 768px) {
+  .manifesto-panel-with-pixel {
+    padding: 32px 22px !important;
+    gap: 28px !important;
+  }
+
+  .manifesto-panel-with-pixel .portfolio-scroll-text {
+    font-size: clamp(2.1rem, 10vw, 3.25rem) !important;
+    line-height: 1.02 !important;
+  }
+
+  .manifesto-pixel-wrap,
+  .custom-pixel-card {
+    width: 100% !important;
+  }
+}
+
+/* ======================================================
+   QUOTES PANEL + PIXEL TRANSITION CARD
+   ====================================================== */
+
+.manifesto-panel-with-pixel {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 360px !important;
+  gap: 56px !important;
+  align-items: center !important;
+  padding: 58px 64px !important;
+  overflow: hidden !important;
+}
+
+.manifesto-copy {
+  min-width: 0 !important;
+  text-align: left !important;
+}
+
+.manifesto-pixel-wrap {
+  justify-self: end !important;
+  width: 360px !important;
+  max-width: 100% !important;
+}
+
+.custom-pixel-card {
+  width: 360px !important;
+  max-width: 100% !important;
+  border-radius: 28px !important;
+  border-color: rgba(0, 255, 171, 0.22) !important;
+}
+
+.manifesto-pixel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale(0.1) contrast(1.08) brightness(0.88);
+}
+
+.manifesto-pixel-content {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 10px;
+  padding: 24px;
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(0, 255, 171, 0.22), transparent 38%),
+    radial-gradient(circle at 18% 80%, rgba(94, 0, 254, 0.24), transparent 42%),
+    #07090d;
+}
+
+.manifesto-pixel-content span {
+  color: #00ffab;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.manifesto-pixel-content strong {
+  color: #ffffff;
+  font-size: clamp(2rem, 3vw, 3rem);
+  font-weight: 900;
+  letter-spacing: -0.06em;
+  line-height: 0.95;
+}
+
+.manifesto-pixel-content p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.66);
+  font-weight: 700;
+}
+
+/* quote teks tetap fit */
+.manifesto-panel-with-pixel .portfolio-scroll-text {
+  font-size: clamp(2.9rem, 5vw, 5.2rem) !important;
+  line-height: 0.98 !important;
+  letter-spacing: -0.07em !important;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .manifesto-panel-with-pixel {
+    grid-template-columns: 1fr !important;
+    padding: 44px 34px !important;
+    gap: 34px !important;
+  }
+
+  .manifesto-pixel-wrap {
+    justify-self: start !important;
+    width: min(360px, 100%) !important;
+  }
+}
+
+/* HP */
+@media (max-width: 768px) {
+  .manifesto-panel-with-pixel {
+    padding: 32px 22px !important;
+    gap: 28px !important;
+  }
+
+  .manifesto-panel-with-pixel .portfolio-scroll-text {
+    font-size: clamp(2.1rem, 10vw, 3.25rem) !important;
+    line-height: 1.02 !important;
+  }
+
+  .manifesto-pixel-wrap,
+  .custom-pixel-card {
+    width: 100% !important;
+  }
+}
+
+/* FIX VIDEO MEME DI PIXEL CARD */
+
+.manifesto-pixel-wrap {
+  width: 320px !important;
+}
+
+.custom-pixel-card {
+  width: 320px !important;
+  max-width: 100% !important;
+  border-radius: 28px !important;
+  overflow: hidden !important;
+}
+
+.pixelated-image-card__active {
+  overflow: hidden !important;
+}
+
+.manifesto-pixel-video {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  display: block !important;
+  background: #000 !important;
+}
+
+/* PIXEL CARD BORDER + PIXEL COLOR FIX */
+
+.custom-pixel-card {
+  border: 1px solid rgba(255, 255, 255, 0.75) !important;
+  border-radius: 28px !important;
+  overflow: hidden !important;
+  box-shadow:
+    0 22px 70px rgba(0, 0, 0, 0.38),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04) !important;
+}
+
+.pixelated-image-card__pixel {
+  background-color: #ffffff !important;
+}
+
+/* biar video gak ada garis aneh */
+.manifesto-pixel-video {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block !important;
+  background: #000 !important;
+}
+
+/* isi awal card jangan terlalu hijau */
+.manifesto-pixel-content {
+  background:
+    radial-gradient(circle at 50% 15%, rgba(255, 255, 255, 0.08), transparent 38%),
+    radial-gradient(circle at 18% 80%, rgba(94, 0, 254, 0.22), transparent 42%),
+    #07090d !important;
+}
+
+/* QUOTES PANEL - TEKS KIRI ATAS */
+
+.manifesto-panel-with-pixel,
+.manifesto-panel {
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  padding-top: 56px !important;
+  padding-left: 42px !important;
+  padding-right: 64px !important;
+}
+
+.manifesto-copy {
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+  text-align: left !important;
+  transform: none !important;
+}
+
+.manifesto-label {
+  margin-bottom: 34px !important;
+}
+
+.portfolio-scroll-reveal,
+.portfolio-scroll-text {
+  margin: 0 !important;
+  text-align: left !important;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+}
+
+.portfolio-scroll-text {
+  max-width: 860px !important;
+  font-size: clamp(3rem, 5vw, 5.5rem) !important;
+  line-height: 0.98 !important;
+}

@@ -15,6 +15,7 @@ import Aurora from "./components/Aurora";
 import BlurText from "./components/BlurText";
 import ScrollReveal from "./components/ScrollReveal";
 import Lanyard from "./components/Lanyard";
+import PixelTransition from "./components/PixelTransition";
 
 const navItems = [
   { label: "Home", href: "#home" },
@@ -191,7 +192,7 @@ function HeroSection({ onBlurComplete }) {
 </h1>
           <BlurText
             className="hero-description"
-            text="Pengembang aplikasi dan web yang berfokus pada desain modern, performa tinggi, dan solusi berbasis teknologi kreatif. Saya membangun tampilan website interaktif, responsif, dan memiliki identitas visual yang kuat."
+            text="Web and application developer focused on modern, responsive, and user-friendly design. Building digital projects with a neat appearance, good performance, and a comfortable user experience."
             delay={60}
             animateBy="words"
             direction="top"
@@ -244,21 +245,49 @@ function ManifestoSection() {
   return (
     <section className="section manifesto-section">
       <div className="container">
-        <div className="manifesto-panel">
-          <span className="manifesto-label">Quotes by Me</span>
+        <div className="manifesto-panel manifesto-panel-with-pixel">
+          <div className="manifesto-copy">
+            <span className="manifesto-label">Quotes by Charlie Chaplin</span>
 
-          <ScrollReveal
-            baseOpacity={0.12}
-            enableBlur
-            baseRotation={2.5}
-            blurStrength={5}
-            containerClassName="portfolio-scroll-reveal"
-            textClassName="portfolio-scroll-text"
-            rotationEnd="bottom center"
-            wordAnimationEnd="bottom center"
-          >
-            Masa depanmu dimulai dari apa yang kamu pelajari hari ini.
-          </ScrollReveal>
+            <ScrollReveal
+              baseOpacity={0.12}
+              enableBlur
+              baseRotation={2.5}
+              blurStrength={5}
+              containerClassName="portfolio-scroll-reveal"
+              textClassName="portfolio-scroll-text"
+              rotationEnd="bottom center"
+              wordAnimationEnd="bottom center"
+            >
+              A day without laughter is a wasted day.
+            </ScrollReveal>
+          </div>
+
+          <div className="manifesto-pixel-wrap">
+<PixelTransition
+  firstContent={
+    <div className="manifesto-pixel-content">
+      <span>Psstt..</span>
+      <strong>TAP THE CARD!!</strong>
+    </div>
+  }
+  secondContent={
+    <video
+      className="manifesto-pixel-video"
+      src="/meme.mp4"
+      loop
+      playsInline
+      preload="auto"
+    />
+  }
+  gridSize={9}
+  pixelColor="#ffffff"
+  once={false}
+  animationStepDuration={0.42}
+  aspectRatio="125%"
+  className="custom-pixel-card"
+/>
+          </div>
         </div>
       </div>
     </section>
