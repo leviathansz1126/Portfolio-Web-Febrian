@@ -365,7 +365,7 @@ function AboutSection() {
           </div>
 
           <div className="about-lanyard-visual">
-            <Lanyard position={[0, 0, 24]} gravity={[0, -32, 0]} fov={24} />
+            <Lanyard position={[0, 0, 23]} gravity={[0, -40, 0]} fov={20} />
           </div>
         </div>
       </div>

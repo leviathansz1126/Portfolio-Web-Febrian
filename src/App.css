@@ -6613,3 +6613,73 @@ button,
     pointer-events: none !important;
   }
 }
+
+/* ======================================================
+   MOBILE ONLY FIX - LANYARD FRAME KECIL + TALI PANJANG + INTERAKTIF
+   Desktop tidak kena.
+   ====================================================== */
+
+@media (max-width: 768px), (pointer: coarse) {
+  /* ABOUT PANEL tetap rapi */
+  .about-lanyard-panel {
+    overflow: visible !important;
+  }
+
+  /* Frame lanyard dikecilin */
+  .about-lanyard-visual {
+    position: relative !important;
+
+    width: min(360px, 100%) !important;
+    height: 390px !important;
+    min-height: 390px !important;
+    max-height: 390px !important;
+
+    margin: 10px auto 0 !important;
+    border-radius: 24px !important;
+    overflow: hidden !important;
+
+    pointer-events: auto !important;
+    touch-action: none !important;
+    z-index: 20 !important;
+  }
+
+  /* Semua wrapper/canvas lanyard harus bisa disentuh */
+  .about-lanyard-visual *,
+  .about-lanyard-visual canvas,
+  .lanyard-wrapper,
+  .lanyard-wrapper *,
+  .lanyard-wrapper canvas {
+    pointer-events: auto !important;
+    touch-action: none !important;
+  }
+
+  /* Canvas dibuat lebih tinggi dari frame supaya tali keliatan panjang */
+  .about-lanyard-visual canvas,
+  .lanyard-wrapper canvas {
+    position: absolute !important;
+    left: 50% !important;
+    top: -145px !important;
+
+    width: 100% !important;
+    height: 620px !important;
+
+    transform: translateX(-50%) scale(1.12) !important;
+    transform-origin: top center !important;
+
+    display: block !important;
+    z-index: 30 !important;
+  }
+
+  /* Kalau ada layer grid/pseudo yang nutup touch, matikan pointer-nya */
+  .about-lanyard-panel::before,
+  .about-lanyard-panel::after,
+  .about-lanyard-visual::before,
+  .about-lanyard-visual::after {
+    pointer-events: none !important;
+  }
+
+  /* Biar card lanyard nggak terlalu kecil */
+  .about-lanyard-visual {
+    isolation: isolate !important;
+  }
+}
