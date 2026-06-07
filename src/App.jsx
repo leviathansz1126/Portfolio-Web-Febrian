@@ -324,6 +324,9 @@ function ManifestoSection() {
 }
 
 function AboutSection() {
+  const isMobile =
+  typeof window !== "undefined" &&
+  window.matchMedia("(max-width: 768px), (pointer: coarse)").matches;
   return (
     <section id="about" className="section about-section">
       <div className="container">
@@ -365,7 +368,11 @@ function AboutSection() {
           </div>
 
           <div className="about-lanyard-visual">
-            <Lanyard position={[0, 0, 23]} gravity={[0, -40, 0]} fov={20} />
+            <Lanyard
+  position={isMobile ? [0, 0, 18] : [0, 0, 23]}
+  gravity={isMobile ? [0, -24, 0] : [0, -40, 0]}
+  fov={isMobile ? 14 : 20}
+/>
           </div>
         </div>
       </div>
