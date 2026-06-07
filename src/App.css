@@ -5500,3 +5500,1094 @@ html {
 section[id] {
   scroll-margin-top: 90px;
 }
+
+/* ======================================================
+   ANIME.JS EFFECTS FINAL
+   Navbar enter, hero title, project hover, scroll enter-exit,
+   letter split, SVG line drawing.
+   ====================================================== */
+
+/* Letter split */
+.anime-text {
+  margin: 0;
+}
+
+.anime-letter {
+  display: inline-block;
+  transform-origin: 50% 100%;
+  will-change: opacity, transform, filter;
+}
+
+/* Hero SVG line drawing */
+.hero-svg-line {
+  width: min(320px, 70vw);
+  height: auto;
+  margin: 26px 0 0;
+  opacity: 0.9;
+}
+
+.svg-line-drawing path {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.78);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Hero title with AnimeText */
+.hero-title-custom {
+  display: block !important;
+  max-width: 780px !important;
+  font-size: clamp(4.6rem, 7.6vw, 8.7rem) !important;
+  line-height: 0.93 !important;
+  letter-spacing: -0.08em !important;
+  font-weight: 900 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Section titles */
+.section-title-blur,
+.about-title-blur,
+.contact-title-blur {
+  display: block !important;
+  max-width: 920px !important;
+  font-size: clamp(2.8rem, 5.2vw, 5.2rem) !important;
+  line-height: 0.98 !important;
+  letter-spacing: -0.075em !important;
+  font-weight: 900 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Card titles */
+.card-title-blur {
+  display: block !important;
+  font-size: 1.35rem !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.045em !important;
+  font-weight: 900 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Project card hover smooth */
+.project-card {
+  transform-origin: center;
+  will-change: transform;
+}
+
+/* Card hover tambahan visual */
+.project-card:hover,
+.service-card:hover {
+  border-color: rgba(255, 255, 255, 0.28) !important;
+  box-shadow:
+    0 28px 90px rgba(0, 0, 0, 0.5),
+    0 0 34px rgba(255, 255, 255, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04) !important;
+}
+
+/* Navbar initial safe */
+.staggered-menu-header {
+  opacity: 1;
+  will-change: opacity, transform, filter;
+}
+
+/* Scroll reveal elements */
+.manifesto-panel,
+.about-lanyard-panel,
+.section-header,
+.service-card,
+.project-card,
+.chat-panel,
+.contact-panel,
+.footer {
+  will-change: opacity, transform, filter;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .hero-title-custom {
+    font-size: clamp(3rem, 14vw, 4.7rem) !important;
+    line-height: 0.96 !important;
+    letter-spacing: -0.075em !important;
+  }
+
+  .section-title-blur,
+  .about-title-blur,
+  .contact-title-blur {
+    font-size: clamp(2.25rem, 11vw, 3.7rem) !important;
+    line-height: 1 !important;
+  }
+
+  .hero-svg-line {
+    width: min(260px, 78vw);
+    margin-top: 20px;
+  }
+
+  .svg-line-drawing path {
+    stroke-width: 2.5;
+  }
+}
+
+/* ======================================================
+   EMERGENCY RESTORE - BIKIN WEB BALIK RAPI
+   ====================================================== */
+
+.hero-title-custom {
+  display: block !important;
+  max-width: 760px !important;
+  margin: 0 0 24px !important;
+  font-size: clamp(4.8rem, 7.2vw, 8.4rem) !important;
+  line-height: 0.93 !important;
+  letter-spacing: -0.08em !important;
+  font-weight: 900 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.hero-title-custom span {
+  display: block !important;
+  color: inherit !important;
+  -webkit-text-fill-color: inherit !important;
+}
+
+.section-header h2,
+.about-lanyard-copy h2,
+.contact-panel h2 {
+  font-size: clamp(2.8rem, 5.2vw, 5rem) !important;
+  line-height: 0.98 !important;
+  letter-spacing: -0.07em !important;
+  font-weight: 900 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.service-card h3,
+.project-card h3 {
+  font-size: 1.35rem !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.045em !important;
+  font-weight: 900 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Kalau class AnimeText masih kebawa dari cache/CSS lama */
+.anime-text,
+.anime-text span,
+.anime-letter {
+  display: inline !important;
+  opacity: 1 !important;
+  filter: none !important;
+  transform: none !important;
+  letter-spacing: inherit !important;
+}
+
+/* SVG garis yang bikin hero jadi aneh: matikan */
+.hero-svg-line,
+.svg-line-drawing {
+  display: none !important;
+}
+
+/* Biar title contact nggak pecah-pecah */
+.contact-panel h2 {
+  max-width: 520px !important;
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+}
+
+/* Biar section text tidak jadi uppercase semua */
+.section-header p,
+.card-text-blur,
+.card-text-blur span,
+.about-blur-text,
+.about-blur-text span,
+.contact-panel p {
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  color: rgba(255, 255, 255, 0.68) !important;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.68) !important;
+}
+
+/* Mobile tetap aman */
+@media (max-width: 768px) {
+  .hero-title-custom {
+    font-size: clamp(3.1rem, 14vw, 4.8rem) !important;
+    line-height: 0.96 !important;
+  }
+
+  .section-header h2,
+  .about-lanyard-copy h2,
+  .contact-panel h2 {
+    font-size: clamp(2.3rem, 11vw, 3.8rem) !important;
+    line-height: 1 !important;
+  }
+}
+
+/* ======================================================
+   SAFE GLOBAL ANIME EFFECTS
+   Semua efek masuk, tanpa ngerusak layout/font.
+   ====================================================== */
+
+.anime-safe-reveal {
+  will-change: opacity, transform, filter;
+}
+
+.anime-safe-reveal:not(.is-visible) {
+  opacity: 0;
+  filter: blur(12px);
+}
+
+.anime-from-bottom:not(.is-visible) {
+  transform: translate3d(0, 34px, 0) scale(0.985);
+}
+
+.anime-from-left:not(.is-visible) {
+  transform: translate3d(-34px, 20px, 0) scale(0.985);
+}
+
+.anime-from-right:not(.is-visible) {
+  transform: translate3d(34px, 20px, 0) scale(0.985);
+}
+
+.anime-pop:not(.is-visible) {
+  transform: translate3d(0, 28px, 0) scale(0.94);
+}
+
+.anime-safe-reveal.is-visible {
+  opacity: 1;
+  filter: blur(0);
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+/* JANGAN sampai Anime.js ngerusak font/title */
+.hero-title-custom,
+.hero-title-custom span,
+.section-header h2,
+.about-lanyard-copy h2,
+.contact-panel h2,
+.service-card h3,
+.project-card h3 {
+  opacity: 1;
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+}
+
+/* Hover visual tambahan */
+.project-card,
+.service-card,
+.stat-card,
+.contact-links a {
+  transform-origin: center;
+  will-change: transform;
+}
+
+.project-card:hover,
+.service-card:hover,
+.stat-card:hover,
+.contact-links a:hover {
+  border-color: rgba(0, 255, 171, 0.34) !important;
+  box-shadow:
+    0 28px 90px rgba(0, 0, 0, 0.48),
+    0 0 34px rgba(0, 255, 171, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04) !important;
+}
+
+/* Mobile lebih ringan */
+@media (max-width: 768px) {
+  .anime-safe-reveal:not(.is-visible) {
+    filter: blur(8px);
+  }
+
+  .anime-from-bottom:not(.is-visible),
+  .anime-from-left:not(.is-visible),
+  .anime-from-right:not(.is-visible),
+  .anime-pop:not(.is-visible) {
+    transform: translate3d(0, 22px, 0) scale(0.98);
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .anime-safe-reveal,
+  .anime-safe-reveal.is-visible,
+  .anime-safe-reveal:not(.is-visible) {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+  }
+}
+
+/* ======================================================
+   SAFE GLOBAL ANIME EFFECTS
+   Semua efek masuk, tanpa ngerusak layout/font.
+   ====================================================== */
+
+.anime-safe-reveal {
+  will-change: opacity, transform, filter;
+}
+
+.anime-safe-reveal:not(.is-visible) {
+  opacity: 0;
+  filter: blur(12px);
+}
+
+.anime-from-bottom:not(.is-visible) {
+  transform: translate3d(0, 34px, 0) scale(0.985);
+}
+
+.anime-from-left:not(.is-visible) {
+  transform: translate3d(-34px, 20px, 0) scale(0.985);
+}
+
+.anime-from-right:not(.is-visible) {
+  transform: translate3d(34px, 20px, 0) scale(0.985);
+}
+
+.anime-pop:not(.is-visible) {
+  transform: translate3d(0, 28px, 0) scale(0.94);
+}
+
+.anime-safe-reveal.is-visible {
+  opacity: 1;
+  filter: blur(0);
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+/* JANGAN sampai Anime.js ngerusak font/title */
+.hero-title-custom,
+.hero-title-custom span,
+.section-header h2,
+.about-lanyard-copy h2,
+.contact-panel h2,
+.service-card h3,
+.project-card h3 {
+  opacity: 1;
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+}
+
+/* Hover visual tambahan */
+.project-card,
+.service-card,
+.stat-card,
+.contact-links a {
+  transform-origin: center;
+  will-change: transform;
+}
+
+.project-card:hover,
+.service-card:hover,
+.stat-card:hover,
+.contact-links a:hover {
+  border-color: rgba(0, 255, 171, 0.34) !important;
+  box-shadow:
+    0 28px 90px rgba(0, 0, 0, 0.48),
+    0 0 34px rgba(0, 255, 171, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04) !important;
+}
+
+/* Mobile lebih ringan */
+@media (max-width: 768px) {
+  .anime-safe-reveal:not(.is-visible) {
+    filter: blur(8px);
+  }
+
+  .anime-from-bottom:not(.is-visible),
+  .anime-from-left:not(.is-visible),
+  .anime-from-right:not(.is-visible),
+  .anime-pop:not(.is-visible) {
+    transform: translate3d(0, 22px, 0) scale(0.98);
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .anime-safe-reveal,
+  .anime-safe-reveal.is-visible,
+  .anime-safe-reveal:not(.is-visible) {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+  }
+}
+
+/* ======================================================
+   FIX GLOBAL TEXT SPACING - BIAR HURUF/KATA GA NUMPUK
+   Paste PALING BAWAH App.css
+   ====================================================== */
+
+:root {
+  --title-letter-space: -0.035em;
+  --big-title-letter-space: -0.045em;
+  --body-letter-space: 0.005em;
+}
+
+/* Global text biar napas dikit */
+body,
+button,
+a,
+p,
+span,
+small,
+strong,
+input,
+textarea {
+  letter-spacing: var(--body-letter-space);
+}
+
+/* HERO TITLE */
+.hero-title-custom,
+.hero-title-custom span {
+  letter-spacing: var(--big-title-letter-space) !important;
+  word-spacing: 0.08em !important;
+}
+
+/* ABOUT TITLE */
+.about-lanyard-copy h2,
+.about-title-blur,
+.about-title-blur span {
+  letter-spacing: var(--title-letter-space) !important;
+  word-spacing: 0.09em !important;
+}
+
+/* SECTION TITLE */
+.section-header h2,
+.section-title-blur,
+.section-title-blur span {
+  letter-spacing: var(--title-letter-space) !important;
+  word-spacing: 0.09em !important;
+}
+
+/* CONTACT TITLE */
+.contact-panel h2,
+.contact-title-blur,
+.contact-title-blur span {
+  letter-spacing: var(--title-letter-space) !important;
+  word-spacing: 0.09em !important;
+}
+
+/* CARD TITLE */
+.service-card h3,
+.project-card h3,
+.card-title-blur,
+.card-title-blur span {
+  letter-spacing: -0.02em !important;
+  word-spacing: 0.08em !important;
+}
+
+/* PARAGRAPH / DESCRIPTION */
+.hero-description,
+.hero-description span,
+.about-blur-text,
+.about-blur-text span,
+.section-header p,
+.section-text-blur,
+.section-text-blur span,
+.card-text-blur,
+.card-text-blur span,
+.contact-text-blur,
+.contact-text-blur span,
+.about-note,
+.about-note span {
+  letter-spacing: 0.005em !important;
+  word-spacing: 0.08em !important;
+  line-height: 1.65 !important;
+}
+
+/* KHUSUS BLURTEXT / ANIMATED TEXT YANG PECAH JADI SPAN */
+.hero-description span,
+.about-blur-text span,
+.section-text-blur span,
+.card-text-blur span,
+.contact-text-blur span,
+.about-note span,
+.chat-title-blur span,
+.chat-small-blur span,
+.project-category-blur span {
+  margin-right: 0.24em !important;
+}
+
+/* Jangan kasih jarak setelah span terakhir */
+.hero-description span:last-child,
+.about-blur-text span:last-child,
+.section-text-blur span:last-child,
+.card-text-blur span:last-child,
+.contact-text-blur span:last-child,
+.about-note span:last-child,
+.chat-title-blur span:last-child,
+.chat-small-blur span:last-child,
+.project-category-blur span:last-child {
+  margin-right: 0 !important;
+}
+
+/* Kalau title besar ternyata masih pakai span per kata */
+.about-title-blur span,
+.section-title-blur span,
+.contact-title-blur span,
+.card-title-blur span {
+  margin-right: 0.13em !important;
+}
+
+.about-title-blur span:last-child,
+.section-title-blur span:last-child,
+.contact-title-blur span:last-child,
+.card-title-blur span:last-child {
+  margin-right: 0 !important;
+}
+
+/* NAVBAR / MENU */
+.sm-logo::after,
+.sm-toggle,
+.sm-panel-item,
+.sm-socials-link {
+  letter-spacing: -0.015em !important;
+  word-spacing: 0.06em !important;
+}
+
+/* BUTTON */
+.btn,
+.btn span,
+.chat-input button,
+.scroll-supra-actions-v2 a,
+.scroll-supra-actions-v2 code {
+  letter-spacing: -0.01em !important;
+  word-spacing: 0.06em !important;
+}
+
+/* STATS */
+.stat-card strong,
+.stat-card span,
+.about-stats strong,
+.about-stats span {
+  letter-spacing: -0.01em !important;
+  word-spacing: 0.06em !important;
+}
+
+/* TAG */
+.tag-row span,
+.project-category,
+.service-number {
+  letter-spacing: 0.01em !important;
+  word-spacing: 0.06em !important;
+}
+
+/* QUOTES STATIC */
+.manifesto-quote-static {
+  letter-spacing: var(--big-title-letter-space) !important;
+  word-spacing: 0.1em !important;
+  line-height: 0.98 !important;
+}
+
+/* MOBILE: jangan terlalu rapet di HP */
+@media (max-width: 768px) {
+  :root {
+    --title-letter-space: -0.025em;
+    --big-title-letter-space: -0.032em;
+    --body-letter-space: 0.006em;
+  }
+
+  .hero-title-custom,
+  .hero-title-custom span,
+  .about-lanyard-copy h2,
+  .section-header h2,
+  .contact-panel h2,
+  .manifesto-quote-static {
+    word-spacing: 0.08em !important;
+  }
+
+  .hero-description span,
+  .about-blur-text span,
+  .section-text-blur span,
+  .card-text-blur span,
+  .contact-text-blur span,
+  .about-note span {
+    margin-right: 0.2em !important;
+  }
+}
+
+/* ======================================================
+   FIX TITLE NABRAK / LINE HEIGHT SEMUA JUDUL BESAR
+   PASTE PALING BAWAH App.css
+   ====================================================== */
+
+/* Semua judul besar section */
+.section-header h2,
+.section-title-blur,
+.section-title-blur span,
+.about-lanyard-copy h2,
+.about-title-blur,
+.about-title-blur span,
+.contact-panel h2,
+.contact-title-blur,
+.contact-title-blur span,
+.manifesto-quote-static {
+  line-height: 1.08 !important;
+  letter-spacing: -0.025em !important;
+  word-spacing: 0.08em !important;
+  overflow: visible !important;
+}
+
+/* Khusus title project/tools/contact biar turunannya lega */
+.section-header h2 {
+  max-width: 980px !important;
+  margin-bottom: 18px !important;
+}
+
+/* Kalau title pakai span dari BlurText, kasih jarak antar kata */
+.section-title-blur span,
+.about-title-blur span,
+.contact-title-blur span {
+  display: inline-block !important;
+  margin-right: 0.12em !important;
+  line-height: 1.08 !important;
+}
+
+.section-title-blur span:last-child,
+.about-title-blur span:last-child,
+.contact-title-blur span:last-child {
+  margin-right: 0 !important;
+}
+
+/* Hero title juga jangan terlalu dempet */
+.hero-title-custom,
+.hero-title-custom span {
+  line-height: 1.02 !important;
+  letter-spacing: -0.035em !important;
+  word-spacing: 0.08em !important;
+}
+
+/* Card title biar tidak nempel */
+.service-card h3,
+.project-card h3,
+.card-title-blur,
+.card-title-blur span {
+  line-height: 1.18 !important;
+  letter-spacing: -0.015em !important;
+  word-spacing: 0.06em !important;
+}
+
+/* Paragraph tetap nyaman */
+.hero-description,
+.about-blur-text,
+.section-header p,
+.card-text-blur,
+.contact-panel p {
+  line-height: 1.75 !important;
+  letter-spacing: 0.002em !important;
+  word-spacing: 0.06em !important;
+}
+
+/* Mobile lebih lega lagi */
+@media (max-width: 768px) {
+  .section-header h2,
+  .section-title-blur,
+  .section-title-blur span,
+  .about-lanyard-copy h2,
+  .about-title-blur,
+  .about-title-blur span,
+  .contact-panel h2,
+  .contact-title-blur,
+  .contact-title-blur span,
+  .manifesto-quote-static {
+    line-height: 1.12 !important;
+    letter-spacing: -0.018em !important;
+    word-spacing: 0.06em !important;
+  }
+
+  .hero-title-custom,
+  .hero-title-custom span {
+    line-height: 1.06 !important;
+    letter-spacing: -0.025em !important;
+  }
+}
+
+/* ======================================================
+   ANDROID RESPONSIVE + LOW END PERFORMANCE FIX
+   Paste PALING BAWAH App.css
+   ====================================================== */
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img,
+video,
+canvas {
+  max-width: 100%;
+}
+
+/* Touch target biar gampang dipencet */
+a,
+button,
+.sm-toggle,
+.btn,
+.chat-input button,
+.contact-links a,
+.project-card,
+.service-card,
+.stat-card {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* Desktop tetap normal, mobile diringankan */
+@media (max-width: 768px), (pointer: coarse) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    width: 100%;
+    min-width: 0;
+    overflow-x: hidden;
+  }
+
+  .app {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* Aurora tetap ada tapi lebih ringan */
+  .portfolio-aurora-bg {
+    opacity: 0.62 !important;
+    filter: none !important;
+    transform: translateZ(0);
+    pointer-events: none !important;
+  }
+
+  .portfolio-aurora-bg canvas {
+    transform: scale(1.08);
+  }
+
+  /* Navbar mobile */
+  .staggered-menu-header {
+    padding: 18px 18px 0 !important;
+  }
+
+  .sm-logo::after {
+    font-size: 0.92rem !important;
+  }
+
+  .sm-toggle {
+    min-height: 42px !important;
+    padding: 10px 14px !important;
+    border-radius: 999px !important;
+    font-size: 0.86rem !important;
+  }
+
+  .staggered-menu-panel {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    padding: 92px 24px 32px !important;
+  }
+
+  .sm-panel-item {
+    font-size: clamp(2.6rem, 13vw, 4.2rem) !important;
+    line-height: 1.05 !important;
+    letter-spacing: -0.045em !important;
+  }
+
+  .sm-socials-link {
+    font-size: 1rem !important;
+  }
+
+  /* Hero */
+  .hero {
+    min-height: auto !important;
+    padding: 98px 0 54px !important;
+  }
+
+  .hero-inner {
+    width: calc(100% - 36px) !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 38px !important;
+  }
+
+  .hero-content {
+    max-width: 100% !important;
+  }
+
+  .quote-badge {
+    width: fit-content;
+    max-width: 100%;
+    font-size: 0.75rem !important;
+    padding: 10px 14px !important;
+  }
+
+  .hero-title-custom {
+    max-width: 100% !important;
+    font-size: clamp(3rem, 15vw, 4.8rem) !important;
+    line-height: 1.06 !important;
+    letter-spacing: -0.025em !important;
+    word-spacing: 0.06em !important;
+  }
+
+  .hero-description {
+    max-width: 100% !important;
+    font-size: 0.96rem !important;
+    line-height: 1.75 !important;
+  }
+
+  .hero-actions {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 12px !important;
+  }
+
+  .btn {
+    min-height: 46px !important;
+    padding: 0 18px !important;
+    font-size: 0.86rem !important;
+  }
+
+  .hero-stats {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+  }
+
+  .stat-card {
+    min-height: 86px !important;
+    padding: 18px !important;
+  }
+
+  .hero-visual {
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+
+  .profile-card,
+  .pc-card-wrapper,
+  .pc-card {
+    width: min(320px, 88vw) !important;
+    max-width: 320px !important;
+  }
+
+  /* Section umum */
+  .section {
+    padding: 58px 0 !important;
+  }
+
+  .container {
+    width: calc(100% - 36px) !important;
+    max-width: none !important;
+  }
+
+  .section-header {
+    max-width: 100% !important;
+    margin-bottom: 34px !important;
+  }
+
+  .section-header h2,
+  .about-lanyard-copy h2,
+  .contact-panel h2,
+  .manifesto-quote-static {
+    font-size: clamp(2.35rem, 11vw, 3.8rem) !important;
+    line-height: 1.12 !important;
+    letter-spacing: -0.018em !important;
+    word-spacing: 0.06em !important;
+  }
+
+  .section-header p,
+  .about-blur-text,
+  .card-text-blur,
+  .contact-panel p {
+    font-size: 0.94rem !important;
+    line-height: 1.75 !important;
+  }
+
+  /* Quotes */
+  .manifesto-panel,
+  .manifesto-panel-with-pixel {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+    padding: 28px !important;
+    border-radius: 26px !important;
+  }
+
+  .manifesto-quote-static {
+    max-width: 100% !important;
+  }
+
+  .manifesto-pixel-wrap {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .custom-pixel-card {
+    width: min(320px, 100%) !important;
+  }
+
+  /* About + lanyard */
+  .about-lanyard-panel {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+    padding: 30px 24px !important;
+    min-height: auto !important;
+  }
+
+  .about-lanyard-copy {
+    max-width: 100% !important;
+    order: 1;
+  }
+
+  .about-lanyard-visual {
+    order: 2;
+    width: 100% !important;
+    min-height: 430px !important;
+    max-height: 520px !important;
+    overflow: hidden !important;
+    border-radius: 24px !important;
+  }
+
+  .about-stats {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 18px !important;
+  }
+
+  /* Tools */
+  .service-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .service-card {
+    min-height: 220px !important;
+    padding: 24px !important;
+  }
+
+  /* Project */
+  .projects-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+
+  .project-card {
+    padding: 22px !important;
+    min-height: auto !important;
+  }
+
+  .project-card h3,
+  .service-card h3 {
+    font-size: 1.35rem !important;
+    line-height: 1.2 !important;
+  }
+
+  .tag-row {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+
+  .tag-row span {
+    min-height: 32px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+  }
+
+  /* Contact */
+  .contact-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+
+  .chat-panel,
+  .contact-panel {
+    padding: 24px !important;
+    border-radius: 24px !important;
+  }
+
+  .chat-body {
+    gap: 12px !important;
+  }
+
+  .message {
+    max-width: 92% !important;
+    font-size: 0.84rem !important;
+    line-height: 1.5 !important;
+  }
+
+  .chat-input {
+    min-height: 48px !important;
+  }
+
+  .chat-input button {
+    min-width: 58px !important;
+    min-height: 38px !important;
+  }
+
+  .contact-links {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .contact-links a {
+    min-height: 74px !important;
+  }
+
+  .footer {
+    padding: 28px 18px !important;
+    text-align: center !important;
+  }
+
+  /* Performance: kurangi efek berat di HP */
+  .service-card,
+  .project-card,
+  .stat-card,
+  .chat-panel,
+  .contact-panel,
+  .about-lanyard-panel,
+  .manifesto-panel {
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.28) !important;
+  }
+
+  .project-card:hover,
+  .service-card:hover,
+  .stat-card:hover {
+    transform: none !important;
+  }
+
+  .project-card:active,
+  .service-card:active,
+  .stat-card:active,
+  .contact-links a:active,
+  .btn:active {
+    transform: scale(0.985) !important;
+  }
+
+  /* Jangan ada elemen keluar layar */
+  .hero-inner,
+  .container,
+  .about-lanyard-panel,
+  .manifesto-panel,
+  .contact-grid,
+  .projects-grid,
+  .service-grid {
+    max-width: 100% !important;
+    overflow: hidden;
+  }
+}

@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from "react";
 import "./App.css";
 
 import {
-  SplitTitle,
   ScrollVelocity,
   SpotlightCard,
   GlassSurface,
@@ -10,21 +9,13 @@ import {
 } from "./components/ReactBitsPack";
 
 import ProfileCard from "./components/ProfileCard";
-
 import Aurora from "./components/Aurora";
 import BlurText from "./components/BlurText";
 import ScrollReveal from "./components/ScrollReveal";
 import Lanyard from "./components/Lanyard";
 import PixelTransition from "./components/PixelTransition";
-import PageMotion from "./components/PageMotion";
 import StaggeredMenu from "./components/StaggeredMenu";
-
-const navItems = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Project", href: "#projects" },
-  { label: "Contact", href: "#contact" },
-];
+import AnimePageEffects from "./components/AnimePageEffects";
 
 const staggeredMenuItems = [
   { label: "Home", ariaLabel: "Go to home section", link: "#home" },
@@ -36,7 +27,10 @@ const staggeredMenuItems = [
 const staggeredSocialItems = [
   { label: "Instagram", link: "https://www.instagram.com/fevrii1z" },
   { label: "Email", link: "mailto:owenknight126@gmail.com" },
-  { label: "GitHub", link: "https://github.com" },
+  {
+    label: "GitHub",
+    link: "https://github.com/leviathansz1126/Portfolio-Web-Febrian",
+  },
 ];
 
 const tools = [
@@ -120,6 +114,28 @@ const contactLinks = [
     href: "mailto:owenknight126@gmail.com",
   },
 ];
+
+function AnimatedText({
+  text,
+  className = "",
+  delay = 45,
+  direction = "top",
+  stepDuration = 0.25,
+  animateBy = "words",
+  onAnimationComplete,
+}) {
+  return (
+    <BlurText
+      className={className}
+      text={text}
+      delay={delay}
+      animateBy={animateBy}
+      direction={direction}
+      stepDuration={stepDuration}
+      onAnimationComplete={onAnimationComplete}
+    />
+  );
+}
 
 function Loader() {
   return (
@@ -209,9 +225,10 @@ function HeroSection({ onBlurComplete }) {
             Build clean, move fast, make it memorable
           </div>
 
-<h1 className="hero-title-custom">
-  <span>M Febrian Sidiq Hafadzah</span>
-</h1>
+          <h1 className="hero-title-custom">
+            <span>M Febrian Sidiq Hafadzah</span>
+          </h1>
+
           <BlurText
             className="hero-description"
             text="Web and application developer focused on modern, responsive, and user-friendly design. Building digital projects with a neat appearance, good performance, and a comfortable user experience."
@@ -240,23 +257,23 @@ function HeroSection({ onBlurComplete }) {
         </div>
 
         <div className="hero-visual">
-<ProfileCard
-  name="M Febrian S.H"
-  title="Web Developer"
-  handle="fevrii1z"
-  status="Online"
-  contactText="Contact Me"
-  avatarUrl="/profile.jpg"
-  miniAvatarUrl="/profile.jpg"
-  showUserInfo={false}
-  enableTilt={true}
-  enableMobileTilt={false}
-  behindGlowEnabled
-  behindGlowColor="rgba(125, 190, 255, 0.67)"
-  iconUrl="/iconpattern.png"
-  grainUrl="/grain.webp"
-  innerGradient="linear-gradient(145deg, #11182f 0%, #243b62 48%, #0b0b14 100%)"
-/>
+          <ProfileCard
+            name="M Febrian S.H"
+            title="Web Developer"
+            handle="fevrii1z"
+            status="Online"
+            contactText="Contact Me"
+            avatarUrl="/profile.jpg"
+            miniAvatarUrl="/profile.jpg"
+            showUserInfo={false}
+            enableTilt={true}
+            enableMobileTilt={false}
+            behindGlowEnabled
+            behindGlowColor="rgba(125, 190, 255, 0.67)"
+            iconUrl="/iconpattern.png"
+            grainUrl="/grain.webp"
+            innerGradient="linear-gradient(145deg, #11182f 0%, #243b62 48%, #0b0b14 100%)"
+          />
         </div>
       </div>
     </section>
@@ -286,29 +303,29 @@ function ManifestoSection() {
           </div>
 
           <div className="manifesto-pixel-wrap">
-<PixelTransition
-  firstContent={
-    <div className="manifesto-pixel-content">
-      <span>Psstt..</span>
-      <strong>TAP THE CARD!!</strong>
-    </div>
-  }
-  secondContent={
-    <video
-      className="manifesto-pixel-video"
-      src="/meme.mp4"
-      loop
-      playsInline
-      preload="auto"
-    />
-  }
-  gridSize={9}
-  pixelColor="#ffffff"
-  once={false}
-  animationStepDuration={0.42}
-  aspectRatio="125%"
-  className="custom-pixel-card"
-/>
+            <PixelTransition
+              firstContent={
+                <div className="manifesto-pixel-content">
+                  <span>Psstt..</span>
+                  <strong>TAP THE CARD!!</strong>
+                </div>
+              }
+              secondContent={
+                <video
+                  className="manifesto-pixel-video"
+                  src="/meme.mp4"
+                  loop
+                  playsInline
+                  preload="metadata"
+                />
+              }
+              gridSize={9}
+              pixelColor="#ffffff"
+              once={false}
+              animationStepDuration={0.42}
+              aspectRatio="125%"
+              className="custom-pixel-card"
+            />
           </div>
         </div>
       </div>
@@ -347,11 +364,18 @@ function AboutSection() {
               </div>
             </div>
 
-            <p className="about-note">Working with heart, creating with mind.</p>
+            <AnimatedText
+              className="about-note"
+              text="Working with heart, creating with mind."
+              delay={28}
+              animateBy="words"
+              direction="top"
+              stepDuration={0.2}
+            />
           </div>
 
           <div className="about-lanyard-visual">
-            <Lanyard position={[0, 0, 23]} gravity={[0, -40, 0]} fov={20} />
+            <Lanyard position={[0, 0, 24]} gravity={[0, -32, 0]} fov={24} />
           </div>
         </div>
       </div>
@@ -489,44 +513,31 @@ function ContactSection() {
 }
 
 function App() {
-  const [loading, setLoading] = useState(true);
   const year = useMemo(() => new Date().getFullYear(), []);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2500);
-
-    return () => clearTimeout(timer);
-  }, []);
 
   const handleBlurTextComplete = () => {
     console.log("BlurText animation completed!");
   };
 
   return (
-    <>
-      {loading && <Loader />}
+<div className="app">
+  <AnimePageEffects />
+  <AuroraBackground />
+  <Navbar />
 
-      <div className="app">
-      <PageMotion />
-      <AuroraBackground />
-      <Navbar />
+  <main>
+    <HeroSection onBlurComplete={handleBlurTextComplete} />
+    <ManifestoSection />
+    <AboutSection />
+    <ToolsSection />
+    <ProjectsSection />
+    <ContactSection />
+  </main>
 
-        <main>
-          <HeroSection onBlurComplete={handleBlurTextComplete} />
-          <ManifestoSection />
-          <AboutSection />
-          <ToolsSection />
-          <ProjectsSection />
-          <ContactSection />
-        </main>
-
-        <footer className="footer">
-          <p>© {year} Febrian Portfolio. Built with React + Vite.</p>
-        </footer>
-      </div>
-    </>
+  <footer className="footer">
+    <p>© {year} Febrian Portfolio. Built with React + Vite.</p>
+  </footer>
+</div>
   );
 }
 
