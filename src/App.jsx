@@ -11,7 +11,6 @@ import {
 import ProfileCard from "./components/ProfileCard";
 import Aurora from "./components/Aurora";
 import BlurText from "./components/BlurText";
-import ScrollReveal from "./components/ScrollReveal";
 import Lanyard from "./components/Lanyard";
 import PixelTransition from "./components/PixelTransition";
 import StaggeredMenu from "./components/StaggeredMenu";
@@ -288,18 +287,9 @@ function ManifestoSection() {
           <div className="manifesto-copy">
             <span className="manifesto-label">Quotes by Charlie Chaplin</span>
 
-            <ScrollReveal
-              baseOpacity={0.12}
-              enableBlur
-              baseRotation={2.5}
-              blurStrength={5}
-              containerClassName="portfolio-scroll-reveal"
-              textClassName="portfolio-scroll-text"
-              rotationEnd="bottom center"
-              wordAnimationEnd="bottom center"
-            >
-              A day without laughter is a wasted day.
-            </ScrollReveal>
+<h2 className="manifesto-quote-static">
+  A day without laughter is a wasted day.
+</h2>
           </div>
 
           <div className="manifesto-pixel-wrap">
@@ -375,7 +365,7 @@ function AboutSection() {
           </div>
 
           <div className="about-lanyard-visual">
-            <Lanyard position={[0, 0, 24]} gravity={[0, -32, 0]} fov={24} />
+            <Lanyard position={[0, 0, 23]} gravity={[0, -40, 0]} fov={20} />
           </div>
         </div>
       </div>

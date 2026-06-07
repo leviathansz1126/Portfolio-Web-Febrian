@@ -6591,3 +6591,13 @@ button,
     overflow: hidden;
   }
 }
+
+.manifesto-quote-static {
+  max-width: 980px;
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(3rem, 6vw, 6.6rem);
+  line-height: 0.95;
+  letter-spacing: -0.075em;
+  font-weight: 950;
+}
