@@ -1931,13 +1931,6 @@ img {
   text-transform: uppercase;
 }
 
-.portfolio-scroll-reveal {
-  max-width: 980px;
-}
-
-.portfolio-scroll-text {
-  color: white;
-}
 
 @media (max-width: 768px) {
   .manifesto-section {
@@ -3706,32 +3699,10 @@ body {
   overflow: hidden !important;
 }
 
-.portfolio-scroll-reveal,
-.portfolio-scroll-text {
-  max-width: 100% !important;
-  margin: 0 !important;
-}
-
-.portfolio-scroll-text {
-  font-size: clamp(3rem, 5.8vw, 5.8rem) !important;
-  line-height: 0.98 !important;
-  letter-spacing: -0.07em !important;
-  word-break: normal !important;
-}
-
-/* biar kata panjang tetap aman */
-.portfolio-scroll-text .word {
-  display: inline-block !important;
-}
-
 /* laptop kecil */
 @media (max-width: 1280px) {
   .manifesto-panel {
     padding: 46px 48px !important;
-  }
-
-  .portfolio-scroll-text {
-    font-size: clamp(2.8rem, 6vw, 4.8rem) !important;
   }
 }
 
@@ -3742,11 +3713,6 @@ body {
     border-radius: 24px !important;
   }
 
-  .portfolio-scroll-text {
-    font-size: clamp(2.25rem, 11vw, 3.4rem) !important;
-    line-height: 1.02 !important;
-    letter-spacing: -0.055em !important;
-  }
 }/* QUOTES PANEL FIT FIX */
 
 .manifesto-panel {
@@ -3758,32 +3724,10 @@ body {
   overflow: hidden !important;
 }
 
-.portfolio-scroll-reveal,
-.portfolio-scroll-text {
-  max-width: 100% !important;
-  margin: 0 !important;
-}
-
-.portfolio-scroll-text {
-  font-size: clamp(3rem, 5.8vw, 5.8rem) !important;
-  line-height: 0.98 !important;
-  letter-spacing: -0.07em !important;
-  word-break: normal !important;
-}
-
-/* biar kata panjang tetap aman */
-.portfolio-scroll-text .word {
-  display: inline-block !important;
-}
-
 /* laptop kecil */
 @media (max-width: 1280px) {
   .manifesto-panel {
     padding: 46px 48px !important;
-  }
-
-  .portfolio-scroll-text {
-    font-size: clamp(2.8rem, 6vw, 4.8rem) !important;
   }
 }
 
@@ -3792,12 +3736,6 @@ body {
   .manifesto-panel {
     padding: 32px 24px !important;
     border-radius: 24px !important;
-  }
-
-  .portfolio-scroll-text {
-    font-size: clamp(2.25rem, 11vw, 3.4rem) !important;
-    line-height: 1.02 !important;
-    letter-spacing: -0.055em !important;
   }
 }
 
@@ -3877,13 +3815,6 @@ body {
   font-weight: 700;
 }
 
-/* quote teks tetap fit */
-.manifesto-panel-with-pixel .portfolio-scroll-text {
-  font-size: clamp(2.9rem, 5vw, 5.2rem) !important;
-  line-height: 0.98 !important;
-  letter-spacing: -0.07em !important;
-}
-
 /* Tablet */
 @media (max-width: 1024px) {
   .manifesto-panel-with-pixel {
@@ -3903,11 +3834,6 @@ body {
   .manifesto-panel-with-pixel {
     padding: 32px 22px !important;
     gap: 28px !important;
-  }
-
-  .manifesto-panel-with-pixel .portfolio-scroll-text {
-    font-size: clamp(2.1rem, 10vw, 3.25rem) !important;
-    line-height: 1.02 !important;
   }
 
   .manifesto-pixel-wrap,
@@ -3992,13 +3918,6 @@ body {
   font-weight: 700;
 }
 
-/* quote teks tetap fit */
-.manifesto-panel-with-pixel .portfolio-scroll-text {
-  font-size: clamp(2.9rem, 5vw, 5.2rem) !important;
-  line-height: 0.98 !important;
-  letter-spacing: -0.07em !important;
-}
-
 /* Tablet */
 @media (max-width: 1024px) {
   .manifesto-panel-with-pixel {
@@ -4018,11 +3937,6 @@ body {
   .manifesto-panel-with-pixel {
     padding: 32px 22px !important;
     gap: 28px !important;
-  }
-
-  .manifesto-panel-with-pixel .portfolio-scroll-text {
-    font-size: clamp(2.1rem, 10vw, 3.25rem) !important;
-    line-height: 1.02 !important;
   }
 
   .manifesto-pixel-wrap,
@@ -4114,20 +4028,6 @@ body {
 
 .manifesto-label {
   margin-bottom: 34px !important;
-}
-
-.portfolio-scroll-reveal,
-.portfolio-scroll-text {
-  margin: 0 !important;
-  text-align: left !important;
-  justify-content: flex-start !important;
-  align-items: flex-start !important;
-}
-
-.portfolio-scroll-text {
-  max-width: 860px !important;
-  font-size: clamp(3rem, 5vw, 5.5rem) !important;
-  line-height: 0.98 !important;
 }
 
 /* ======================================================
@@ -4355,20 +4255,6 @@ body {
 
   .manifesto-label {
     margin-bottom: 20px !important;
-  }
-
-  .portfolio-scroll-reveal,
-  .portfolio-scroll-text {
-    width: 100% !important;
-    max-width: 100% !important;
-    text-align: left !important;
-    margin: 0 !important;
-  }
-
-  .portfolio-scroll-text {
-    font-size: clamp(2.15rem, 10vw, 3.25rem) !important;
-    line-height: 1.02 !important;
-    letter-spacing: -0.065em !important;
   }
 
   .manifesto-pixel-wrap {
@@ -4627,10 +4513,6 @@ body {
   .hero-content h1,
   .hero-content h1 span {
     font-size: clamp(2.65rem, 14vw, 4rem) !important;
-  }
-
-  .portfolio-scroll-text {
-    font-size: clamp(1.95rem, 10vw, 2.85rem) !important;
   }
 
   .about-title-blur,
@@ -6600,4 +6482,134 @@ button,
   line-height: 0.95;
   letter-spacing: -0.075em;
   font-weight: 950;
+}
+
+/* ======================================================
+   ANDROID FIX: PROFILE SCROLL + PIXEL CARD CENTER + LANYARD
+   Paste PALING BAWAH App.css
+   ====================================================== */
+
+@media (max-width: 768px), (pointer: coarse) {
+  /* ===============================
+     1) PROFILE CARD JANGAN NGALANGIN SCROLL
+     =============================== */
+
+  .hero-visual {
+    pointer-events: none !important;
+    touch-action: pan-y !important;
+  }
+
+  .hero-visual .profile-card,
+  .hero-visual .pc-card-wrapper,
+  .hero-visual .pc-card,
+  .hero-visual .pc-inside,
+  .hero-visual .pc-content {
+    pointer-events: none !important;
+    touch-action: pan-y !important;
+  }
+
+  /* Tetap tampil, cuma tidak nangkep swipe scroll */
+  .profile-card,
+  .pc-card-wrapper,
+  .pc-card {
+    user-select: none !important;
+    -webkit-user-select: none !important;
+  }
+
+
+  /* ===============================
+     2) TAP THE CARD BENER-BENER TENGAH
+     =============================== */
+
+  .manifesto-pixel-wrap {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .custom-pixel-card {
+    width: min(320px, 100%) !important;
+    margin-inline: auto !important;
+  }
+
+  .manifesto-pixel-content {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 100% !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+
+    text-align: center !important;
+    padding: 24px !important;
+  }
+
+  .manifesto-pixel-content span {
+    width: 100% !important;
+    display: block !important;
+    text-align: center !important;
+    margin: 0 0 14px !important;
+    letter-spacing: 0.14em !important;
+  }
+
+  .manifesto-pixel-content strong {
+    width: 100% !important;
+    display: block !important;
+    text-align: center !important;
+
+    font-size: clamp(2.5rem, 12vw, 4rem) !important;
+    line-height: 0.9 !important;
+    letter-spacing: -0.045em !important;
+  }
+
+
+  /* ===============================
+     3) LANYARD: NYAMBUNG KE FRAME + BISA DIINTERAKSI
+     =============================== */
+
+  .about-lanyard-panel {
+    overflow: visible !important;
+  }
+
+  .about-lanyard-visual {
+    position: relative !important;
+    overflow: hidden !important;
+
+    min-height: 520px !important;
+    height: 520px !important;
+
+    border-radius: 28px !important;
+    pointer-events: auto !important;
+    touch-action: none !important;
+  }
+
+  .about-lanyard-visual canvas {
+    width: 100% !important;
+    height: 620px !important;
+
+    position: absolute !important;
+    left: 0 !important;
+    top: -78px !important;
+
+    display: block !important;
+    pointer-events: auto !important;
+    touch-action: none !important;
+  }
+
+  /* Biar area lanyard tidak ketutup layer lain */
+  .about-lanyard-visual,
+  .about-lanyard-visual * {
+    z-index: 5 !important;
+  }
+
+  /* Kalau ada overlay/grid yang nutup interaksi, matikan pointer-nya */
+  .about-lanyard-panel::before,
+  .about-lanyard-panel::after,
+  .about-lanyard-visual::before,
+  .about-lanyard-visual::after {
+    pointer-events: none !important;
+  }
 }
