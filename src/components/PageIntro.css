@@ -1,0 +1,119 @@
+/* ── Page Intro Overlay ─────────────────────────────────────────────────── */
+.page-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.page-intro--exit {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── Canvas dot grid ────────────────────────────────────────────────────── */
+.page-intro__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Center text group ──────────────────────────────────────────────────── */
+.page-intro__center {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── Main title ─────────────────────────────────────────────────────────── */
+.page-intro__text {
+  display: flex;
+  gap: 2px;
+  font-family: "Inter", "Helvetica Neue", sans-serif;
+  font-size: clamp(2.4rem, 7vw, 6rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #fff;
+  line-height: 1;
+}
+
+.page-intro__char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(24px);
+  animation: charIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes charIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Subtitle ────────────────────────────────────────────────────────────── */
+.page-intro__subtitle {
+  display: flex;
+  gap: 1px;
+  font-family: "Inter", "Helvetica Neue", monospace;
+  font-size: clamp(0.7rem, 2vw, 1rem);
+  font-weight: 400;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.page-intro__sub-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: subCharIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes subCharIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Animated line ──────────────────────────────────────────────────────── */
+.page-intro__line {
+  width: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.3);
+  animation: lineGrow 0.7s 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  margin-top: 6px;
+}
+
+@keyframes lineGrow {
+  to {
+    width: 120px;
+  }
+}
+
+/* ── Reduced motion ─────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .page-intro__char,
+  .page-intro__sub-char {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .page-intro__line {
+    animation: none;
+    width: 120px;
+  }
+}
