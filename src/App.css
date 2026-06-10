@@ -2194,18 +2194,6 @@ img {
   border-radius: 26px;
 }
 
-.about-lanyard-visual::before {
-  content: "";
-  position: absolute;
-  inset: 18px;
-  border-radius: 24px;
-  background:
-    radial-gradient(circle at 50% 12%, rgba(34, 242, 195, 0.1), transparent 42%),
-    radial-gradient(circle at 85% 70%, rgba(143, 72, 255, 0.12), transparent 42%),
-    rgba(255, 255, 255, 0.018);
-  border: 1px solid rgba(255, 255, 255, 0.075);
-}
-
 .about-lanyard-visual .lanyard-wrapper {
   position: relative;
   z-index: 2;
@@ -2280,17 +2268,6 @@ img {
   border-radius: 26px;
 }
 
-.about-lanyard-visual::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 26px;
-  background:
-    radial-gradient(circle at 50% 12%, rgba(34, 242, 195, 0.1), transparent 42%),
-    radial-gradient(circle at 85% 70%, rgba(143, 72, 255, 0.12), transparent 42%),
-    rgba(255, 255, 255, 0.018);
-  border: 1px solid rgba(255, 255, 255, 0.075);
-}
 
 .about-lanyard-visual {
   position: relative;
@@ -2319,18 +2296,6 @@ img {
   border-radius: 26px;
 }
 
-.about-lanyard-visual::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 26px;
-  background:
-    radial-gradient(circle at 50% 12%, rgba(34, 242, 195, 0.1), transparent 42%),
-    radial-gradient(circle at 85% 70%, rgba(143, 72, 255, 0.12), transparent 42%),
-    rgba(255, 255, 255, 0.018);
-  border: 1px solid rgba(255, 255, 255, 0.075);
-}
-
 .about-lanyard-visual .lanyard-wrapper {
   position: relative;
   z-index: 2;
@@ -2350,24 +2315,6 @@ img {
     min-height: 430px;
     transform: scale(0.92);
   }
-}
-
-/* GLOBAL AURORA BACKGROUND */
-
-.portfolio-aurora-bg {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
-  opacity: 0.85;
-}
-
-.portfolio-aurora-bg .aurora-container {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
 }
 
 .app {
@@ -2743,40 +2690,6 @@ main,
   transform: translateY(-30px) !important;
 }
 
-/* GLOBAL AURORA BACKGROUND - PURPLE MINT GREEN */
-
-.portfolio-aurora-bg {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
-  opacity: 0.95;
-}
-
-.portfolio-aurora-bg::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 6% 0%, rgba(94, 0, 254, 0.34), transparent 32%),
-    radial-gradient(circle at 48% 0%, rgba(138, 255, 216, 0.22), transparent 34%),
-    radial-gradient(circle at 74% 0%, rgba(0, 255, 171, 0.2), transparent 30%),
-    linear-gradient(
-      180deg,
-      rgba(5, 6, 6, 0.05) 0%,
-      rgba(5, 6, 6, 0.62) 44%,
-      #050606 100%
-    );
-  pointer-events: none;
-}
-
-.portfolio-aurora-bg .aurora-container {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
 
 .app {
   position: relative;
@@ -3090,13 +3003,6 @@ body {
   }
 }
 
-/* HAPUS KOTAK DALAM YANG NGE-BUNGKUS LANYARD */
-
-.about-lanyard-visual::before {
-  display: none !important;
-  content: none !important;
-}
-
 .about-lanyard-visual {
   background: transparent !important;
   border: none !important;
@@ -3131,11 +3037,6 @@ body {
   box-shadow: none !important;
 }
 
-.about-lanyard-visual::before {
-  display: none !important;
-  content: none !important;
-}
-
 .about-lanyard-visual .lanyard-wrapper {
   width: 100% !important;
   height: 610px !important;
@@ -3153,10 +3054,6 @@ body {
 
 /* DESKTOP: kotak kecil lanyard dimatikan */
 @media (min-width: 769px) {
-  .about-lanyard-visual::before {
-    display: none !important;
-    content: none !important;
-  }
 
   .about-lanyard-visual {
     background: transparent !important;
@@ -3199,23 +3096,6 @@ body {
     overflow: hidden !important;
     border-radius: 24px !important;
     margin-top: 10px !important;
-  }
-
-  .about-lanyard-visual::before {
-    content: "" !important;
-    display: block !important;
-    position: absolute !important;
-    inset: 0 !important;
-    border-radius: 24px !important;
-    background:
-      radial-gradient(circle at 45% 10%, rgba(34, 242, 255, 0.12), transparent 42%),
-      radial-gradient(circle at 85% 80%, rgba(143, 72, 255, 0.18), transparent 48%),
-      rgba(255, 255, 255, 0.025) !important;
-    border: 1px solid rgba(138, 255, 216, 0.16) !important;
-    box-shadow:
-      inset 0 0 0 1px rgba(255, 255, 255, 0.025),
-      0 18px 45px rgba(0, 0, 0, 0.28) !important;
-    pointer-events: none !important;
   }
 
   .about-lanyard-visual .lanyard-wrapper {
@@ -3282,20 +3162,6 @@ body {
   width: 100%;
   max-width: 100%;
   overflow-x: hidden !important;
-}
-
-/* Aurora mobile lebih soft */
-@media (max-width: 768px) {
-  .portfolio-aurora-bg {
-    opacity: 0.72 !important;
-  }
-
-  .portfolio-aurora-bg::after {
-    background:
-      radial-gradient(circle at 20% 0%, rgba(94, 0, 254, 0.28), transparent 36%),
-      radial-gradient(circle at 82% 0%, rgba(0, 255, 171, 0.2), transparent 34%),
-      linear-gradient(180deg, rgba(5, 6, 6, 0.32) 0%, rgba(5, 6, 6, 0.86) 52%, #050606 100%) !important;
-  }
 }
 
 /* HERO MOBILE */
@@ -3463,11 +3329,6 @@ body {
       radial-gradient(circle at 90% 80%, rgba(143, 72, 255, 0.18), transparent 48%),
       rgba(255, 255, 255, 0.025) !important;
     border: 1px solid rgba(138, 255, 216, 0.15) !important;
-  }
-
-  .about-lanyard-visual::before {
-    display: none !important;
-    content: none !important;
   }
 
   .about-lanyard-visual .lanyard-wrapper {
@@ -4078,23 +3939,6 @@ body {
     padding: 64px 0 !important;
   }
 
-  /* BACKGROUND AURORA BIAR HP GA BERAT */
-  .portfolio-aurora-bg {
-    opacity: 0.72 !important;
-  }
-
-  .portfolio-aurora-bg::after {
-    background:
-      radial-gradient(circle at 12% 0%, rgba(94, 0, 254, 0.28), transparent 36%),
-      radial-gradient(circle at 82% 0%, rgba(0, 255, 171, 0.2), transparent 34%),
-      linear-gradient(
-        180deg,
-        rgba(5, 6, 6, 0.28) 0%,
-        rgba(5, 6, 6, 0.86) 52%,
-        #050606 100%
-      ) !important;
-  }
-
   /* NAVBAR MOBILE */
   .navbar {
     top: 14px !important;
@@ -4352,11 +4196,6 @@ body {
       radial-gradient(circle at 90% 80%, rgba(143, 72, 255, 0.18), transparent 48%),
       rgba(255, 255, 255, 0.025) !important;
     border: 1px solid rgba(138, 255, 216, 0.14) !important;
-  }
-
-  .about-lanyard-visual::before {
-    display: none !important;
-    content: none !important;
   }
 
   .about-lanyard-visual .lanyard-wrapper {
@@ -6142,18 +5981,6 @@ button,
     overflow-x: hidden;
   }
 
-  /* Aurora tetap ada tapi lebih ringan */
-  .portfolio-aurora-bg {
-    opacity: 0.62 !important;
-    filter: none !important;
-    transform: translateZ(0);
-    pointer-events: none !important;
-  }
-
-  .portfolio-aurora-bg canvas {
-    transform: scale(1.08);
-  }
-
   /* Navbar mobile */
   .staggered-menu-header {
     padding: 18px 18px 0 !important;
@@ -6604,14 +6431,6 @@ button,
   .about-lanyard-visual * {
     z-index: 5 !important;
   }
-
-  /* Kalau ada overlay/grid yang nutup interaksi, matikan pointer-nya */
-  .about-lanyard-panel::before,
-  .about-lanyard-panel::after,
-  .about-lanyard-visual::before,
-  .about-lanyard-visual::after {
-    pointer-events: none !important;
-  }
 }
 
 /* ======================================================
@@ -6670,14 +6489,6 @@ button,
     z-index: 30 !important;
   }
 
-  /* Kalau ada layer grid/pseudo yang nutup touch, matikan pointer-nya */
-  .about-lanyard-panel::before,
-  .about-lanyard-panel::after,
-  .about-lanyard-visual::before,
-  .about-lanyard-visual::after {
-    pointer-events: none !important;
-  }
-
   /* Biar card lanyard nggak terlalu kecil */
   .about-lanyard-visual {
     isolation: isolate !important;
@@ -6685,49 +6496,198 @@ button,
 }
 
 /* ======================================================
-   MOBILE ONLY - LANYARD FRAME FIX
-   Desktop aman, cuma Android/mobile yang kena.
+   FIX PIXEL CARD VIDEO + TEXT BIAR KEBACA
    ====================================================== */
 
-@media (max-width: 768px), (pointer: coarse) {
-  .about-lanyard-panel {
-    overflow: visible !important;
+.manifesto-pixel-wrap {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.custom-pixel-card {
+  width: min(360px, 100%) !important;
+  border-radius: 28px !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.72) !important;
+  background:
+    radial-gradient(circle at 20% 85%, rgba(94, 0, 254, 0.35), transparent 34%),
+    linear-gradient(145deg, #050506 0%, #0b0b12 100%) !important;
+  overflow: hidden !important;
+}
+
+.pixelated-image-card__default,
+.pixelated-image-card__active {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.pixelated-image-card__default {
+  z-index: 1 !important;
+}
+
+.pixelated-image-card__active {
+  z-index: 2 !important;
+}
+
+.manifesto-pixel-content {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
+
+  padding: clamp(28px, 4vw, 46px) !important;
+  text-align: left !important;
+  color: #ffffff !important;
+}
+
+.manifesto-pixel-content span {
+  display: block !important;
+  margin-bottom: 16px !important;
+  color: #00ffab !important;
+  font-size: 0.95rem !important;
+  font-weight: 950 !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase !important;
+}
+
+.manifesto-pixel-content strong {
+  display: block !important;
+  color: #ffffff !important;
+  font-size: clamp(2.8rem, 4.4vw, 4.8rem) !important;
+  line-height: 0.9 !important;
+  letter-spacing: -0.055em !important;
+  font-weight: 950 !important;
+}
+
+.manifesto-pixel-video {
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+  object-fit: cover !important;
+  background: #000 !important;
+}
+
+/* Android */
+@media (max-width: 768px) {
+  .custom-pixel-card {
+    width: min(320px, 100%) !important;
+    border-radius: 26px !important;
   }
 
-  .about-lanyard-visual {
-    position: relative !important;
-
-    width: min(350px, 100%) !important;
-    height: 360px !important;
-    min-height: 360px !important;
-    max-height: 360px !important;
-
-    margin: 18px auto 0 !important;
-    border-radius: 24px !important;
-    overflow: hidden !important;
-
-    pointer-events: auto !important;
-    touch-action: none !important;
-    z-index: 20 !important;
+  .manifesto-pixel-content {
+    align-items: center !important;
+    text-align: center !important;
+    padding: 28px !important;
   }
 
-  .about-lanyard-visual * {
-    pointer-events: auto !important;
-    touch-action: none !important;
+  .manifesto-pixel-content span,
+  .manifesto-pixel-content strong {
+    text-align: center !important;
   }
 
-  .about-lanyard-panel::before,
-  .about-lanyard-panel::after,
-  .about-lanyard-visual::before,
-  .about-lanyard-visual::after {
-    pointer-events: none !important;
+  .manifesto-pixel-content strong {
+    font-size: clamp(2.7rem, 12vw, 4rem) !important;
   }
 }
 
 /* ======================================================
-   FINAL ANDROID LANYARD FIX
-   Frame kecil, isi lanyard gede, tetap interaktif.
-   Desktop tidak berubah.
+   MEME VIDEO SOUND BUTTON
+   ====================================================== */
+
+.manifesto-pixel-video {
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  background: #000 !important;
+}
+
+/* ======================================================
+   MEME VIDEO CLEAN - NO BUTTON
+   ====================================================== */
+
+.manifesto-pixel-video {
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  background: #000 !important;
+}
+
+.pixelated-image-card__active {
+  pointer-events: auto !important;
+}
+
+/* ======================================================
+   FIX TAP THE CARD TEXT - RAPIH
+   ====================================================== */
+
+.manifesto-pixel-content {
+  width: 100%;
+  height: 100%;
+  padding: 34px !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+
+  text-align: center !important;
+  color: #ffffff !important;
+}
+
+.manifesto-pixel-content span {
+  display: block !important;
+  margin-bottom: 18px !important;
+
+  color: #00ffab !important;
+  font-size: 0.9rem !important;
+  font-weight: 950 !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase !important;
+}
+
+.manifesto-pixel-content strong {
+  display: block !important;
+
+  color: #ffffff !important;
+  font-size: clamp(2.5rem, 3.7vw, 4rem) !important;
+  line-height: 0.92 !important;
+  letter-spacing: -0.045em !important;
+  font-weight: 950 !important;
+
+  white-space: nowrap !important;
+}
+
+/* Biar line TAP THE sama CARD!! rapih */
+.manifesto-pixel-content strong br {
+  display: block;
+  content: "";
+  margin-bottom: 6px;
+}
+
+/* Android */
+@media (max-width: 768px) {
+  .manifesto-pixel-content {
+    padding: 28px !important;
+  }
+
+  .manifesto-pixel-content strong {
+    font-size: clamp(2.45rem, 11vw, 3.5rem) !important;
+    line-height: 0.95 !important;
+    letter-spacing: -0.04em !important;
+  }
+}
+
+/* ======================================================
+   ANDROID LANYARD FIX - DESKTOP AMAN
    ====================================================== */
 
 @media (max-width: 768px), (pointer: coarse) {
@@ -6738,32 +6698,65 @@ button,
   .about-lanyard-visual {
     position: relative !important;
 
-    width: min(330px, 92vw) !important;
-    height: 330px !important;
-    min-height: 330px !important;
-    max-height: 330px !important;
+    width: min(340px, 90vw) !important;
+    height: 430px !important;
+    min-height: 430px !important;
+    max-height: 430px !important;
 
-    margin: 18px auto 0 !important;
+    margin: 28px auto 0 !important;
     padding: 0 !important;
 
-    border-radius: 24px !important;
+    border-radius: 26px !important;
     overflow: hidden !important;
 
     pointer-events: auto !important;
     touch-action: none !important;
-    z-index: 50 !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+
+    z-index: 20 !important;
   }
 
+  .about-lanyard-visual *,
+  .about-lanyard-visual canvas,
   .about-lanyard-visual .lanyard-wrapper {
-    width: 100% !important;
-    height: 100% !important;
-    min-height: 100% !important;
-    max-height: 100% !important;
-
     pointer-events: auto !important;
     touch-action: none !important;
   }
+}
 
+/* ======================================================
+   CLEAN ANDROID LANYARD FIX - NO FAKE STRAP
+   ====================================================== */
+
+@media (max-width: 768px), (pointer: coarse) {
+  .about-lanyard-panel {
+    overflow: visible !important;
+  }
+
+  .about-lanyard-visual {
+    position: relative !important;
+
+    width: min(340px, 90vw) !important;
+    height: 380px !important;
+    min-height: 380px !important;
+    max-height: 380px !important;
+
+    margin: 24px auto 0 !important;
+    padding: 0 !important;
+
+    border-radius: 26px !important;
+    overflow: hidden !important;
+
+    pointer-events: auto !important;
+    touch-action: none !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+
+    z-index: 30 !important;
+  }
+
+  .about-lanyard-visual .lanyard-wrapper,
   .about-lanyard-visual canvas {
     pointer-events: auto !important;
     touch-action: none !important;
@@ -6773,6 +6766,8 @@ button,
   .about-lanyard-panel::after,
   .about-lanyard-visual::before,
   .about-lanyard-visual::after {
+    display: none !important;
+    content: none !important;
     pointer-events: none !important;
   }
 }

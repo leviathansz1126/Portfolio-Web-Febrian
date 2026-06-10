@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { gsap } from "gsap";
 import "./PixelTransition.css";
 
@@ -15,16 +15,21 @@ function PixelTransition({
 }) {
   const containerRef = useRef(null);
   const pixelGridRef = useRef(null);
+  const defaultRef = useRef(null);
   const activeRef = useRef(null);
   const delayedCallRef = useRef(null);
 
   const [isActive, setIsActive] = useState(false);
 
-  const isTouchDevice =
-    typeof window !== "undefined" &&
-    ("ontouchstart" in window ||
+  const isTouchDevice = useMemo(() => {
+    if (typeof window === "undefined") return false;
+
+    return (
+      "ontouchstart" in window ||
       navigator.maxTouchPoints > 0 ||
-      window.matchMedia("(pointer: coarse)").matches);
+      window.matchMedia("(pointer: coarse)").matches
+    );
+  }, []);
 
   useEffect(() => {
     const pixelGridEl = pixelGridRef.current;
@@ -43,17 +48,42 @@ function PixelTransition({
         pixel.style.height = `${size}%`;
         pixel.style.left = `${col * size}%`;
         pixel.style.top = `${row * size}%`;
+
         pixelGridEl.appendChild(pixel);
       }
     }
   }, [gridSize, pixelColor]);
 
-  const animatePixels = (activate) => {
-    setIsActive(activate);
-
-    const pixelGridEl = pixelGridRef.current;
+  const playVideo = () => {
     const activeEl = activeRef.current;
-    if (!pixelGridEl || !activeEl) return;
+    const video = activeEl?.querySelector("video");
+
+    if (!video) return;
+
+    video.currentTime = 0;
+    video.muted = false;
+    video.volume = 1;
+    video.playsInline = true;
+    video.play().catch(() => {});
+  };
+
+  const stopVideo = () => {
+    const activeEl = activeRef.current;
+    const video = activeEl?.querySelector("video");
+
+    if (!video) return;
+
+    video.pause();
+    video.currentTime = 0;
+    video.muted = true;
+  };
+
+  const animatePixels = (activate) => {
+    const pixelGridEl = pixelGridRef.current;
+    const defaultEl = defaultRef.current;
+    const activeEl = activeRef.current;
+
+    if (!pixelGridEl || !defaultEl || !activeEl) return;
 
     const pixels = pixelGridEl.querySelectorAll(".pixelated-image-card__pixel");
     if (!pixels.length) return;
@@ -63,6 +93,12 @@ function PixelTransition({
     if (delayedCallRef.current) {
       delayedCallRef.current.kill();
     }
+
+    if (!activate) {
+      stopVideo();
+    }
+
+    setIsActive(activate);
 
     gsap.set(pixels, { display: "none" });
 
@@ -79,26 +115,18 @@ function PixelTransition({
     });
 
     delayedCallRef.current = gsap.delayedCall(animationStepDuration, () => {
-  activeEl.style.display = activate ? "block" : "none";
-  activeEl.style.pointerEvents = activate ? "none" : "";
+      defaultEl.style.opacity = activate ? "0" : "1";
+      activeEl.style.opacity = activate ? "1" : "0";
 
-  const video = activeEl.querySelector("video");
+      // Jangan dibuat auto, biar mouseleave/tap tetap kebaca dari container
+      activeEl.style.pointerEvents = "none";
 
-if (video) {
-  if (activate) {
-    video.currentTime = 0;
-    video.muted = false;
-    video.volume = 1;
-
-    video.play().catch(() => {
-      console.log("Browser blocked video sound. Click the card once to allow audio.");
+      if (activate) {
+        playVideo();
+      } else {
+        stopVideo();
+      }
     });
-  } else {
-    video.pause();
-    video.currentTime = 0;
-  }
-}
-});
 
     gsap.to(pixels, {
       display: "none",
@@ -116,12 +144,22 @@ if (video) {
   };
 
   const handleLeave = () => {
-    if (isActive && !once) animatePixels(false);
+    if (isActive && !once) {
+      stopVideo();
+      animatePixels(false);
+    }
   };
 
   const handleClick = () => {
-    if (!isActive) animatePixels(true);
-    else if (isActive && !once) animatePixels(false);
+    if (!isActive) {
+      animatePixels(true);
+      return;
+    }
+
+    if (isActive && !once) {
+      stopVideo();
+      animatePixels(false);
+    }
   };
 
   return (
@@ -131,20 +169,22 @@ if (video) {
       style={style}
       onMouseEnter={!isTouchDevice ? handleEnter : undefined}
       onMouseLeave={!isTouchDevice ? handleLeave : undefined}
-      onClick={isTouchDevice ? handleClick : undefined}
-      onFocus={!isTouchDevice ? handleEnter : undefined}
-      onBlur={!isTouchDevice ? handleLeave : undefined}
+      onClick={handleClick}
       tabIndex={0}
     >
       <div style={{ paddingTop: aspectRatio }} />
 
-      <div className="pixelated-image-card__default" aria-hidden={isActive}>
+      <div
+        ref={defaultRef}
+        className="pixelated-image-card__default"
+        aria-hidden={isActive}
+      >
         {firstContent}
       </div>
 
       <div
-        className="pixelated-image-card__active"
         ref={activeRef}
+        className="pixelated-image-card__active"
         aria-hidden={!isActive}
       >
         {secondContent}

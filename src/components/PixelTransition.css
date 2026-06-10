@@ -41,3 +41,20 @@
   display: none;
   position: absolute;
 }
+
+/* FIX LAYER BIAR CARD GA NGILANG */
+.pixelated-image-card__default {
+  opacity: 1;
+  z-index: 1;
+}
+
+.pixelated-image-card__active {
+  display: block !important;
+  opacity: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.pixelated-image-card__pixels {
+  z-index: 3;
+}

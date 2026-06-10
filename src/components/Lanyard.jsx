@@ -48,16 +48,25 @@ export default function Lanyard({
   return (
     <div className="lanyard-wrapper">
       <Canvas
-        camera={{ position, fov }}
-        dpr={[1, isMobile ? 1.5 : 2]}
-        gl={{ alpha: transparent }}
+        camera={{
+          position: isMobile ? [0, 0, 24] : position,
+          fov: isMobile ? 17 : fov,
+        }}
+        dpr={[1, isMobile ? 1.25 : 2]}
+        gl={{ alpha: transparent, antialias: !isMobile }}
         onCreated={({ gl }) => {
           gl.setClearColor(new THREE.Color(0x000000), transparent ? 0 : 1);
+        }}
+        onPointerMissed={() => {
+          document.body.style.cursor = "auto";
         }}
       >
         <ambientLight intensity={Math.PI} />
 
-        <Physics gravity={gravity} timeStep={isMobile ? 1 / 30 : 1 / 60}>
+        <Physics
+          gravity={isMobile ? [0, -28, 0] : gravity}
+          timeStep={isMobile ? 1 / 30 : 1 / 60}
+        >
           <Band isMobile={isMobile} />
         </Physics>
 
@@ -113,13 +122,27 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
     type: "dynamic",
     canSleep: true,
     colliders: false,
-    angularDamping: 4,
-    linearDamping: 4,
+    angularDamping: isMobile ? 5 : 4,
+    linearDamping: isMobile ? 5 : 4,
   };
 
   const { nodes, materials } = useGLTF(cardGLB);
   const texture = useTexture(lanyard);
   const cardTexture = useTexture(cardTextureImage);
+
+  /*
+    MOBILE CONFIG:
+    ropeLength   = panjang tiap segmen tali asli
+    cardAnchorY  = titik gantung card, makin besar = card turun dan tali lebih panjang
+    bandGroupY   = posisi gantungan atas
+  */
+const ropeLength = isMobile ? 1.75 : 1;
+const cardAnchorY = 1.5;
+const bandGroupY = isMobile ? 4.65 : 4;
+const cardVisualY = -1.2;
+const cardScale = 2.25;
+const curveDetail = isMobile ? 28 : 32;
+const bandLineWidth = isMobile ? 1.05 : 1;
 
   const [curve] = useState(
     () =>
@@ -148,36 +171,48 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
   useRopeJoint(fixed, j1, [
     [0, 0, 0],
     [0, 0, 0],
-    1,
+    ropeLength,
   ]);
 
   useRopeJoint(j1, j2, [
     [0, 0, 0],
     [0, 0, 0],
-    1,
+    ropeLength,
   ]);
 
   useRopeJoint(j2, j3, [
     [0, 0, 0],
     [0, 0, 0],
-    1,
+    ropeLength,
   ]);
 
   useSphericalJoint(j3, card, [
     [0, 0, 0],
-    [0, 1.5, 0],
+    [0, cardAnchorY, 0],
   ]);
 
   useEffect(() => {
-    if (hovered) {
-      document.body.style.cursor = dragged ? "grabbing" : "grab";
-      return () => {
-        document.body.style.cursor = "auto";
-      };
-    }
+    if (!hovered) return;
+
+    document.body.style.cursor = dragged ? "grabbing" : "grab";
+
+    return () => {
+      document.body.style.cursor = "auto";
+    };
   }, [hovered, dragged]);
 
   useFrame((state, delta) => {
+    if (
+      !fixed.current ||
+      !j1.current ||
+      !j2.current ||
+      !j3.current ||
+      !card.current ||
+      !band.current
+    ) {
+      return;
+    }
+
     if (dragged) {
       vec.set(state.pointer.x, state.pointer.y, 0.5).unproject(state.camera);
       dir.copy(vec).sub(state.camera.position).normalize();
@@ -187,55 +222,53 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
         ref.current?.wakeUp();
       });
 
-      card.current?.setNextKinematicTranslation({
+      card.current.setNextKinematicTranslation({
         x: vec.x - dragged.x,
         y: vec.y - dragged.y,
         z: vec.z - dragged.z,
       });
     }
 
-    if (fixed.current) {
-      [j1, j2].forEach((ref) => {
-        if (!ref.current.lerped) {
-          ref.current.lerped = new THREE.Vector3().copy(
-            ref.current.translation()
-          );
-        }
-
-        const clampedDistance = Math.max(
-          0.1,
-          Math.min(1, ref.current.lerped.distanceTo(ref.current.translation()))
+    [j1, j2].forEach((ref) => {
+      if (!ref.current.lerped) {
+        ref.current.lerped = new THREE.Vector3().copy(
+          ref.current.translation()
         );
+      }
 
-        ref.current.lerped.lerp(
-          ref.current.translation(),
-          delta * (minSpeed + clampedDistance * (maxSpeed - minSpeed))
-        );
-      });
+      const clampedDistance = Math.max(
+        0.1,
+        Math.min(1, ref.current.lerped.distanceTo(ref.current.translation()))
+      );
 
-      curve.points[0].copy(j3.current.translation());
-      curve.points[1].copy(j2.current.lerped);
-      curve.points[2].copy(j1.current.lerped);
-      curve.points[3].copy(fixed.current.translation());
+      ref.current.lerped.lerp(
+        ref.current.translation(),
+        delta * (minSpeed + clampedDistance * (maxSpeed - minSpeed))
+      );
+    });
 
-      band.current.geometry.setPoints(curve.getPoints(isMobile ? 16 : 32));
+    curve.points[0].copy(j3.current.translation());
+    curve.points[1].copy(j2.current.lerped);
+    curve.points[2].copy(j1.current.lerped);
+    curve.points[3].copy(fixed.current.translation());
 
-      ang.copy(card.current.angvel());
-      rot.copy(card.current.rotation());
+    band.current.geometry.setPoints(curve.getPoints(curveDetail));
 
-      card.current.setAngvel({
-        x: ang.x,
-        y: ang.y - rot.y * 0.25,
-        z: ang.z,
-      });
-    }
+    ang.copy(card.current.angvel());
+    rot.copy(card.current.rotation());
+
+    card.current.setAngvel({
+      x: ang.x,
+      y: ang.y - rot.y * 0.25,
+      z: ang.z,
+    });
   });
 
   curve.curveType = "chordal";
 
   return (
     <>
-      <group position={[0, 4, 0]}>
+      <group position={[0, bandGroupY, 0]}>
         <RigidBody ref={fixed} {...segmentProps} type="fixed" />
 
         <RigidBody position={[0.5, 0, 0]} ref={j1} {...segmentProps}>
@@ -259,16 +292,38 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
           <CuboidCollider args={[0.8, 1.125, 0.01]} />
 
           <group
-            scale={2.25}
-            position={[0, -1.2, -0.05]}
-            onPointerOver={() => hover(true)}
-            onPointerOut={() => hover(false)}
+            scale={cardScale}
+            position={[0, cardVisualY, -0.05]}
+            onPointerOver={(event) => {
+              event.stopPropagation();
+              hover(true);
+            }}
+            onPointerOut={(event) => {
+              event.stopPropagation();
+              hover(false);
+            }}
+            onPointerCancel={(event) => {
+              event.stopPropagation();
+              drag(false);
+              hover(false);
+            }}
             onPointerUp={(event) => {
-              event.target.releasePointerCapture(event.pointerId);
+              event.stopPropagation();
+
+              if (event.target?.releasePointerCapture) {
+                event.target.releasePointerCapture(event.pointerId);
+              }
+
               drag(false);
             }}
             onPointerDown={(event) => {
-              event.target.setPointerCapture(event.pointerId);
+              event.stopPropagation();
+              event.nativeEvent?.preventDefault?.();
+
+              if (event.target?.setPointerCapture) {
+                event.target.setPointerCapture(event.pointerId);
+              }
+
               drag(
                 new THREE.Vector3()
                   .copy(event.point)
@@ -307,7 +362,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
           useMap
           map={texture}
           repeat={[-4, 1]}
-          lineWidth={1}
+          lineWidth={bandLineWidth}
         />
       </mesh>
     </>
