@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import "./App.css";
 
 import {
@@ -13,6 +13,7 @@ import BlurText from "./components/BlurText";
 import Lanyard from "./components/Lanyard";
 import PixelTransition from "./components/PixelTransition";
 import ProfileCard from "./components/ProfileCard";
+import ModelViewer from "./components/ModelViewer";
 
 const staggeredMenuItems = [
   { label: "Home", ariaLabel: "Go to home section", link: "#home" },
@@ -276,7 +277,28 @@ function ManifestoSection() {
   );
 }
 
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => {
+      setIsMobile(
+        window.matchMedia("(max-width: 768px), (pointer: coarse)").matches
+      );
+    };
+
+    check();
+    window.addEventListener("resize", check);
+
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  return isMobile;
+}
+
 function AboutSection() {
+  const isMobile = useIsMobile();
+
   return (
     <section id="about" className="section about-section">
       <div className="container">
@@ -317,9 +339,35 @@ function AboutSection() {
             />
           </div>
 
-          <div className="about-lanyard-visual">
-            <Lanyard position={[0, 0, 23]} gravity={[0, -40, 0]} fov={20} />
-          </div>
+         <div className="about-lanyard-visual">
+  {isMobile ? (
+    <div className="mobile-model-viewer">
+<ModelViewer
+  url="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/main/2.0/ToyCar/glTF-Binary/ToyCar.glb"
+  width="100%"
+  height="100%"
+  modelXOffset={0}
+  modelYOffset={-0.12}
+  defaultRotationX={-20}
+  defaultRotationY={12}
+  defaultZoom={0.28}
+  minZoomDistance={0.18}
+  maxZoomDistance={1.4}
+  enableMouseParallax={false}
+  enableHoverRotation={false}
+  enableManualRotation={true}
+  enableManualZoom={true}
+  environmentPreset="forest"
+  fadeIn={false}
+  autoRotate={true}
+  autoRotateSpeed={0.55}
+  showScreenshotButton={false}
+/>
+    </div>
+  ) : (
+    <Lanyard position={[0, 0, 23]} gravity={[0, -40, 0]} fov={20} />
+  )}
+</div>
         </div>
       </div>
     </section>
