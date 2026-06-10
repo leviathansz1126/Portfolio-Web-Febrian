@@ -33,27 +33,38 @@ export default function Lanyard({
   transparent = true,
 }) {
   const [isMobile, setIsMobile] = useState(() => {
-    return typeof window !== "undefined" && window.innerWidth < 768;
+    if (typeof window === "undefined") return false;
+    return window.matchMedia("(max-width: 768px), (pointer: coarse)").matches;
   });
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
+    const checkMobile = () => {
+      setIsMobile(
+        window.matchMedia("(max-width: 768px), (pointer: coarse)").matches
+      );
     };
 
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+    };
   }, []);
 
   return (
     <div className="lanyard-wrapper">
       <Canvas
         camera={{
-          position: isMobile ? [0, 0, 25] : position,
-          fov: isMobile ? 16 : fov,
+          position: isMobile ? [0, 0, 28] : position,
+          fov: isMobile ? 22 : fov,
         }}
-        dpr={[1, isMobile ? 1.2 : 2]}
-        gl={{ alpha: transparent, antialias: !isMobile }}
+        dpr={[1, isMobile ? 1.15 : 2]}
+        gl={{
+          alpha: transparent,
+          antialias: !isMobile,
+          powerPreference: isMobile ? "low-power" : "high-performance",
+        }}
         onCreated={({ gl }) => {
           gl.setClearColor(new THREE.Color(0x000000), transparent ? 0 : 1);
         }}
@@ -61,7 +72,7 @@ export default function Lanyard({
         <ambientLight intensity={Math.PI} />
 
         <Physics
-          gravity={isMobile ? [0, -78, 0] : gravity}
+          gravity={isMobile ? [0, -82, 0] : gravity}
           timeStep={1 / 60}
         >
           <Band isMobile={isMobile} />
@@ -75,6 +86,7 @@ export default function Lanyard({
             rotation={[0, 0, Math.PI / 3]}
             scale={[100, 0.1, 1]}
           />
+
           <Lightformer
             intensity={3}
             color="white"
@@ -82,6 +94,7 @@ export default function Lanyard({
             rotation={[0, 0, Math.PI / 3]}
             scale={[100, 0.1, 1]}
           />
+
           <Lightformer
             intensity={3}
             color="white"
@@ -89,6 +102,7 @@ export default function Lanyard({
             rotation={[0, 0, Math.PI / 3]}
             scale={[100, 0.1, 1]}
           />
+
           <Lightformer
             intensity={10}
             color="white"
@@ -119,8 +133,8 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
     type: "dynamic",
     canSleep: true,
     colliders: false,
-    angularDamping: isMobile ? 2.2 : 4,
-    linearDamping: isMobile ? 2.2 : 4,
+    angularDamping: isMobile ? 1.35 : 4,
+    linearDamping: isMobile ? 1.35 : 4,
   };
 
   const { nodes, materials } = useGLTF(cardGLB);
@@ -128,25 +142,28 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
   const cardTexture = useTexture(cardTextureImage);
 
   /*
-    MOBILE FIX:
-    - posisi awal dibuat vertikal, jadi tali langsung nyambung dari atas
-    - gravity dibuat kuat, jadi jatuhnya nggak slow
-    - cardAnchorY tetap 1.5 supaya sambungan card tidak putus
+    Desktop tetap pakai bentuk lama.
+    Mobile dibuat vertikal supaya tali nyambung dari atas frame,
+    card kelihatan utuh, dan tidak slow.
   */
-  const ropeLength = isMobile ? 2.00 : 1;
+  const bandGroupY = isMobile ? 5.05 : 4;
+
+  const ropeLength = isMobile ? 0.78 : 1;
   const cardAnchorY = 1.5;
-  const bandGroupY = isMobile ? 5.85 : 4;
 
-  const j1Pos = isMobile ? [0.08, -0.75, 0] : [0.5, 0, 0];
-  const j2Pos = isMobile ? [0.16, -1.5, 0] : [1, 0, 0];
-  const j3Pos = isMobile ? [0.24, -2.25, 0] : [1.5, 0, 0];
-
-  const cardPos = isMobile ? [0.26, -3.75, 0] : [2, 0, 0];
+  const j1Pos = isMobile ? [0.02, -0.58, 0] : [0.5, 0, 0];
+  const j2Pos = isMobile ? [0.04, -1.16, 0] : [1, 0, 0];
+  const j3Pos = isMobile ? [0.06, -1.74, 0] : [1.5, 0, 0];
+  const cardPos = isMobile ? [0.08, -3.2, 0] : [2, 0, 0];
 
   const cardVisualY = -1.2;
-  const cardScale = isMobile ? 2.28 : 2.25;
+  const cardScale = isMobile ? 1.96 : 2.25;
+
+  const hitboxWidth = isMobile ? 2.45 : 2.1;
+  const hitboxHeight = isMobile ? 3.45 : 3.1;
+
   const curveDetail = isMobile ? 30 : 32;
-  const bandLineWidth = isMobile ? 1.08 : 1;
+  const bandLineWidth = isMobile ? 0.88 : 1;
 
   const [curve] = useState(
     () =>
@@ -278,6 +295,10 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
       event.target.setPointerCapture(event.pointerId);
     }
 
+    [card, j1, j2, j3, fixed].forEach((ref) => {
+      ref.current?.wakeUp();
+    });
+
     drag(
       new THREE.Vector3()
         .copy(event.point)
@@ -339,9 +360,9 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
             onPointerUp={stopDrag}
             onPointerDown={startDrag}
           >
-            {/* HITBOX GEDE BIAR ANDROID GAMPANG DI-DRAG */}
+            {/* Hitbox transparan: bikin Android gampang di-drag */}
             <mesh position={[0, 0.15, 0.08]}>
-              <planeGeometry args={[2.2, 3.3]} />
+              <planeGeometry args={[hitboxWidth, hitboxHeight]} />
               <meshBasicMaterial
                 transparent
                 opacity={0}
@@ -374,6 +395,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
 
       <mesh ref={band}>
         <meshLineGeometry />
+
         <meshLineMaterial
           color="white"
           depthTest={false}

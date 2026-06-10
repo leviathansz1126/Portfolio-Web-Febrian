@@ -32,11 +32,12 @@
   -webkit-user-select: none !important;
 }
 
-/* ANDROID ONLY */
+/* MOBILE ONLY - desktop tidak kena */
 @media (max-width: 768px), (pointer: coarse) {
   .lanyard-wrapper {
     height: 100%;
-    transform: translateY(-72px) scale(1.22);
+
+    transform: translateY(-28px) scale(1);
     transform-origin: center top;
 
     overflow: visible;
@@ -44,6 +45,8 @@
 
     pointer-events: auto !important;
     touch-action: none !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
   }
 
   .lanyard-wrapper canvas {
@@ -52,5 +55,7 @@
 
     pointer-events: auto !important;
     touch-action: none !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
   }
 }
