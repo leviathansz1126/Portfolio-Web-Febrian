@@ -49,23 +49,20 @@ export default function Lanyard({
     <div className="lanyard-wrapper">
       <Canvas
         camera={{
-          position: isMobile ? [0, 0, 24] : position,
-          fov: isMobile ? 17 : fov,
+          position: isMobile ? [0, 0, 25] : position,
+          fov: isMobile ? 16 : fov,
         }}
-        dpr={[1, isMobile ? 1.25 : 2]}
+        dpr={[1, isMobile ? 1.2 : 2]}
         gl={{ alpha: transparent, antialias: !isMobile }}
         onCreated={({ gl }) => {
           gl.setClearColor(new THREE.Color(0x000000), transparent ? 0 : 1);
-        }}
-        onPointerMissed={() => {
-          document.body.style.cursor = "auto";
         }}
       >
         <ambientLight intensity={Math.PI} />
 
         <Physics
-          gravity={isMobile ? [0, -28, 0] : gravity}
-          timeStep={isMobile ? 1 / 30 : 1 / 60}
+          gravity={isMobile ? [0, -78, 0] : gravity}
+          timeStep={1 / 60}
         >
           <Band isMobile={isMobile} />
         </Physics>
@@ -122,8 +119,8 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
     type: "dynamic",
     canSleep: true,
     colliders: false,
-    angularDamping: isMobile ? 5 : 4,
-    linearDamping: isMobile ? 5 : 4,
+    angularDamping: isMobile ? 2.2 : 4,
+    linearDamping: isMobile ? 2.2 : 4,
   };
 
   const { nodes, materials } = useGLTF(cardGLB);
@@ -131,18 +128,25 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
   const cardTexture = useTexture(cardTextureImage);
 
   /*
-    MOBILE CONFIG:
-    ropeLength   = panjang tiap segmen tali asli
-    cardAnchorY  = titik gantung card, makin besar = card turun dan tali lebih panjang
-    bandGroupY   = posisi gantungan atas
+    MOBILE FIX:
+    - posisi awal dibuat vertikal, jadi tali langsung nyambung dari atas
+    - gravity dibuat kuat, jadi jatuhnya nggak slow
+    - cardAnchorY tetap 1.5 supaya sambungan card tidak putus
   */
-const ropeLength = isMobile ? 1.75 : 1;
-const cardAnchorY = 1.5;
-const bandGroupY = isMobile ? 4.65 : 4;
-const cardVisualY = -1.2;
-const cardScale = 2.25;
-const curveDetail = isMobile ? 28 : 32;
-const bandLineWidth = isMobile ? 1.05 : 1;
+  const ropeLength = isMobile ? 2.00 : 1;
+  const cardAnchorY = 1.5;
+  const bandGroupY = isMobile ? 5.85 : 4;
+
+  const j1Pos = isMobile ? [0.08, -0.75, 0] : [0.5, 0, 0];
+  const j2Pos = isMobile ? [0.16, -1.5, 0] : [1, 0, 0];
+  const j3Pos = isMobile ? [0.24, -2.25, 0] : [1.5, 0, 0];
+
+  const cardPos = isMobile ? [0.26, -3.75, 0] : [2, 0, 0];
+
+  const cardVisualY = -1.2;
+  const cardScale = isMobile ? 2.28 : 2.25;
+  const curveDetail = isMobile ? 30 : 32;
+  const bandLineWidth = isMobile ? 1.08 : 1;
 
   const [curve] = useState(
     () =>
@@ -266,25 +270,50 @@ const bandLineWidth = isMobile ? 1.05 : 1;
 
   curve.curveType = "chordal";
 
+  const startDrag = (event) => {
+    event.stopPropagation();
+    event.nativeEvent?.preventDefault?.();
+
+    if (event.target?.setPointerCapture) {
+      event.target.setPointerCapture(event.pointerId);
+    }
+
+    drag(
+      new THREE.Vector3()
+        .copy(event.point)
+        .sub(vec.copy(card.current.translation()))
+    );
+  };
+
+  const stopDrag = (event) => {
+    event.stopPropagation();
+
+    if (event.target?.releasePointerCapture) {
+      event.target.releasePointerCapture(event.pointerId);
+    }
+
+    drag(false);
+  };
+
   return (
     <>
       <group position={[0, bandGroupY, 0]}>
         <RigidBody ref={fixed} {...segmentProps} type="fixed" />
 
-        <RigidBody position={[0.5, 0, 0]} ref={j1} {...segmentProps}>
+        <RigidBody position={j1Pos} ref={j1} {...segmentProps}>
           <BallCollider args={[0.1]} />
         </RigidBody>
 
-        <RigidBody position={[1, 0, 0]} ref={j2} {...segmentProps}>
+        <RigidBody position={j2Pos} ref={j2} {...segmentProps}>
           <BallCollider args={[0.1]} />
         </RigidBody>
 
-        <RigidBody position={[1.5, 0, 0]} ref={j3} {...segmentProps}>
+        <RigidBody position={j3Pos} ref={j3} {...segmentProps}>
           <BallCollider args={[0.1]} />
         </RigidBody>
 
         <RigidBody
-          position={[2, 0, 0]}
+          position={cardPos}
           ref={card}
           {...segmentProps}
           type={dragged ? "kinematicPosition" : "dynamic"}
@@ -307,30 +336,20 @@ const bandLineWidth = isMobile ? 1.05 : 1;
               drag(false);
               hover(false);
             }}
-            onPointerUp={(event) => {
-              event.stopPropagation();
-
-              if (event.target?.releasePointerCapture) {
-                event.target.releasePointerCapture(event.pointerId);
-              }
-
-              drag(false);
-            }}
-            onPointerDown={(event) => {
-              event.stopPropagation();
-              event.nativeEvent?.preventDefault?.();
-
-              if (event.target?.setPointerCapture) {
-                event.target.setPointerCapture(event.pointerId);
-              }
-
-              drag(
-                new THREE.Vector3()
-                  .copy(event.point)
-                  .sub(vec.copy(card.current.translation()))
-              );
-            }}
+            onPointerUp={stopDrag}
+            onPointerDown={startDrag}
           >
+            {/* HITBOX GEDE BIAR ANDROID GAMPANG DI-DRAG */}
+            <mesh position={[0, 0.15, 0.08]}>
+              <planeGeometry args={[2.2, 3.3]} />
+              <meshBasicMaterial
+                transparent
+                opacity={0}
+                depthWrite={false}
+                side={THREE.DoubleSide}
+              />
+            </mesh>
+
             <mesh geometry={nodes.card.geometry}>
               <meshPhysicalMaterial
                 map={cardTexture || materials.base.map}

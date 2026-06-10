@@ -36,7 +36,7 @@
 @media (max-width: 768px), (pointer: coarse) {
   .lanyard-wrapper {
     height: 100%;
-    transform: translateY(-32px) scale(1.18);
+    transform: translateY(-72px) scale(1.22);
     transform-origin: center top;
 
     overflow: visible;
